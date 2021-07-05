@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  view_party: one
+  user: one
+
+two:
+  view_party: two
+  user: two
