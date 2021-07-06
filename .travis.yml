@@ -19,5 +19,6 @@ deploy:
     region: "us-east-2"
     app: "viewing party"
     env: "Viewingparty-env"
+    bucket: "elasticbeanstalk-us-east-2-036883958305"
     on:
       branch: travis
