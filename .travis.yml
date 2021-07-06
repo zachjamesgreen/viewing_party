@@ -7,10 +7,6 @@ script:
 - bundle exec rails db:{create,migrate} RAILS_ENV=test
 - bundle exec rspec
 deploy:
-   - provider: heroku
-     api_key:
-     app:
-     run: rails db:migrate
   - provider: elasticbeanstalk
     access_key_id:
       secure: "k9PbKWgWfDWQRBH2wnLLdK8yFFyJAFQWWGKMjXaz4jgqF5EVVfzNcUUEEXIbVDeTq1o/zN5Isd7tIh37Mxw7eyJWzMzyLBNC6Q9obNT0y4kC4t4H8/gawuT5g6CKPbM6N3ruFU5iVYDngncP/yP/Ig0InmVMN9/npZlAfq69rGC/qXQPTptj2gHY3L4eDWxHPKp9SvoFXzcq0NlumZwHmmE0XuCLSZFQzEn+V1rtFT3nNqZcgDK77jFwBoA4L5bFZkL8E6W0unOkZWVrJ+882sXUoCCA+FGP5nr6rtT63+e12xhwySfa478uyVaWah9NErVotqPTzk/o5t1xdJf0eehCI7mWljM/HL+2pzosZAEe8w2RiducT0xjbSyXb1d/9bpV8oI99RP4bX/HidpkW0fwyAi8/+yaFNuV2Jc9CzqmMklNKgnsx5vSriPTf84+TgeGUxxRF63LO39Sm0gBHDXAq2O3099vNeqO5Br4oZECT8dL5a7PuDYSoSS+Ry/jU00sP/3kekvuZtMqFmQZkYSSJut7MyG7Zyx9PaYwefxtf7PZR3jshpsSqthUhdNmFKY0D8CerylvNhVaxYVdLVzkILIt7RSTH89Wv+ZcrgXQMDLsC6K87fRFIwn9ZYCybnIMLJl1IDn8XqgFNK+vSXOPcj3SrQKL4Se8ihKrU5M="
@@ -23,3 +19,7 @@ deploy:
     run: rails db:migrate
     on:
       branch: travis
+#  - provider: "heroku"
+#     api_key:
+#     app:
+#     run: rails db:migrate
