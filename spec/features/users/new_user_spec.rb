@@ -23,7 +23,7 @@ RSpec.describe 'New User Page' do
     click_button('Create User')
 
     expect(current_path).to eq('/')
-    expect(page).to have_content('Welcome, tim!')
+    expect(page).to have_content('Welcome, Tim!')
   end
 
   it 'does not create with incomplete information' do
