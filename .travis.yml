@@ -1,13 +1,13 @@
 language: ruby
 rbenv:
 - 2.7.2
-node_js:
-  - 12
 addons:
   postgresql: 9.6
 script:
-- bundle exec rails db:{create,migrate} RAILS_ENV=test
+- nvm install node
 - yarn install
+- bundle exec rails db:{create,migrate} RAILS_ENV=test
+- bundle exec rails webpacker:compile
 - bundle exec rspec
 deploy:
   provider: elasticbeanstalk
