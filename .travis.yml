@@ -19,3 +19,5 @@ deploy:
     region: "us-east-2"
     app: "viewing party"
     env: "Viewingparty-env"
+    on:
+      branch: travis
