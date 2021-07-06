@@ -22,6 +22,7 @@ group :development, :test do
   gem 'faraday'
   gem 'webpacker'
   gem 'shoulda-matchers'
+  gem 'bcrypt'
 end
 
 group :development do
