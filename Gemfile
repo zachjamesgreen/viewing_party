@@ -22,8 +22,6 @@ gem 'faraday'
 group :development, :test do
   gem 'pry'
   gem 'travis'
-  gem 'faraday'
-  gem 'webpacker'
   gem 'shoulda-matchers'
   gem 'bcrypt'
 end
