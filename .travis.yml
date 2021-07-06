@@ -7,19 +7,15 @@ script:
 - bundle exec rails db:{create,migrate} RAILS_ENV=test
 - bundle exec rspec
 deploy:
-  - provider: elasticbeanstalk
-    access_key_id:
-      secure: "k9PbKWgWfDWQRBH2wnLLdK8yFFyJAFQWWGKMjXaz4jgqF5EVVfzNcUUEEXIbVDeTq1o/zN5Isd7tIh37Mxw7eyJWzMzyLBNC6Q9obNT0y4kC4t4H8/gawuT5g6CKPbM6N3ruFU5iVYDngncP/yP/Ig0InmVMN9/npZlAfq69rGC/qXQPTptj2gHY3L4eDWxHPKp9SvoFXzcq0NlumZwHmmE0XuCLSZFQzEn+V1rtFT3nNqZcgDK77jFwBoA4L5bFZkL8E6W0unOkZWVrJ+882sXUoCCA+FGP5nr6rtT63+e12xhwySfa478uyVaWah9NErVotqPTzk/o5t1xdJf0eehCI7mWljM/HL+2pzosZAEe8w2RiducT0xjbSyXb1d/9bpV8oI99RP4bX/HidpkW0fwyAi8/+yaFNuV2Jc9CzqmMklNKgnsx5vSriPTf84+TgeGUxxRF63LO39Sm0gBHDXAq2O3099vNeqO5Br4oZECT8dL5a7PuDYSoSS+Ry/jU00sP/3kekvuZtMqFmQZkYSSJut7MyG7Zyx9PaYwefxtf7PZR3jshpsSqthUhdNmFKY0D8CerylvNhVaxYVdLVzkILIt7RSTH89Wv+ZcrgXQMDLsC6K87fRFIwn9ZYCybnIMLJl1IDn8XqgFNK+vSXOPcj3SrQKL4Se8ihKrU5M="
-    secret_access_key:
-      secure: "lE9sZnxtoiXlgQaxNv3pmDgFsPK6s/pI43XU+CBimFBDuZoNIu7gboqervChkqdJhEYj+ZSKLnBcfYgd6VPV+BR/FqxSlDT2Q72gF5VseshslrrXQzNwbjnz4QUJC/hoSmIGZD3F9PJPas0o5dHDaw7IWOErjIBdFs057IVjBlbCrzGdbyMa1R5zxZWcD05f/91oQDKNnwEk1rzLN/7bbbemtmIWHt/DThZXNAxvBHZuhpm8AFDaTSJQeU7sNB3wPccLMwSEyOymfqpIh/6RwrywqVHO/8e5cr+OFs0y7TX1LoOjk87w3xPixB2f2oZ7xi2aeK9i0KFDomfxF54b7YVOj95zoC10NV8ADQQnz2fVj/43SdQWCeTET70cHMsO3UvIfcwsy8G/q+YTW/cR8nkJM9oDSTGlJui6ge1fcIZ/8VNYhqM2WosiwIyLceU2MMFM/ozAF7FSBVLPp2RSfkTrFt6zrUVSmMuZ0U60yRer0N7k6ZPqjku+oLkfPESFe1sWHG/efy3pXNgkGnS6bYzIcUbOjb34sOSsR0qVWnwI/UWJKZZtpE/nZYfSrlIMnmtE0geSch2CjOkFxYPMYBdSISQt+9iwFxVGxj5U7F768vEkUwNMsJ0N/YzOh2j4bqWMrxIvdNzrYZSz7aBlzNnlCMTiQxO5MSgHrQovhP0="
-    region: "us-east-2"
-    app: "viewing party"
-    env: "Viewingparty-env"
-    bucket: "elasticbeanstalk-us-east-2-036883958305"
-    run: rails db:migrate
-    on:
-      branch: travis
-#  - provider: "heroku"
-#     api_key:
-#     app:
-#     run: rails db:migrate
+  provider: elasticbeanstalk
+  access_key_id:
+    secure: RisqronN9JZSqlWPrqKT3VUZdgie8VrvmJXIIoGwPVNkFxeUu8oAdwe3NGu74n91crQahgodfj5rCTXWmPkvqUrq82om73n74t9O5pYnGhIbrZqC3xUG9lzE7/Hb5HSMu6dH5cGCKFqWr0M8UnjdNLdD2xauikFd9cyoO/LJkHaq9u+8YB4znw4QZAiScZE3G9xiFNwd6smS73n88aheH86zWhoMzgRwUj0YGOp7ruWJM1D9QdTxy90yD1TR3lXdS3NNDySzzhtz8PEopOuwuL2KWb4Qj58xNXsBVSTLX97+eOuFeVYjGSzHFcOnmDBP1WGk1AWfsFbOuivB3ivr5BKF0MYflTxFC+jjX1XAlLAxxVL6s0tg/klX6FRFp8t0WZZu6oIIy4Wh5tiARUHUNIKyTLkbHKxG4ZsfGSSXXNfmtHLkNM8gb2U/IoBUXvZVzSBNEsA4TnnamfWIA6n5YLITDILQXImNxM8fCWZ0FaPLy+lgu7iZoKKBGhgHW041NBeenRw6Z/almEXeyg35F53/kflWiiDII2vcDE6ONMCd+ldqHmf7libTJP4sbmFik6GR7UYH4go9ix8JT10rXMAaFMTSXJIekdrCYbf0IT6Tw8T7m/o4VpHuuwYBgGTXPig3wuK48N4fgxwwR9g/wbj5pqj6OgLk5XbFLZ7PXQc=
+  secret_access_key:
+    secure: drBeeSs522PBfJ0ToJzP2M31Fj1kpLzPXkAMMFeW/ka2x79m+xrh8gsPa1/JOls3O6WVT0eUj4OWAGmWy34V0L5NJmIGsbqq4mCI8iTD2O/Ue2YAWz1e+LKTiY+VhKZItcNQa7bp7xSr1e0W3pax0xg7SlZaHhgkB2kcp/mS3f7j7GH79+Z6/YOqGYSQDmdy1oaMWlskwr60+vY9Yqi2EnzGoyXSWnIBED/Bmp71w7ADPhzyDLNRpbzb1kWkQ/4qtlQMfZYmxFFCNwwpxnsEuKHfJ5e0sxvznXpftq1nD1Bs8fcpd7b+cYgpon9VXPGsBdhvfqO0OBvLhOzsmiit6cfVKOGadEVMBEvvIVG8ROIhWAf16y9ykRu47+fOtzSGIo3kqp5pcv/U+hOyhFhKX0TXkLQRvjBN1BOlIoAgrv4XxKY3vyvMzIlzngjA9INzjBxDWd48ZxNKr49+ylpONNOvevgGk9Vg+KuZi85gRXQwtjaxtWs6jAmRiHIsjrmDMZTyKccmfTs06mBE9ia7vpMDeQbgkM7e9aGMj6MCyqQWzNivyJlThhvjd4Qy8L0+eboqM0KcaKhbqxT5wR6to6eZ2ziljPeGm8xGX7XwpwfyVFLseUfjdPaui12kLMJvuxLDzg2CRKN6wJkVrgNv6Hq/UZ21Zmr8drCKBZq/uYU=
+  region: us-east-2
+  app: viewing party
+  env: Viewingparty-env
+  bucket: elasticbeanstalk-us-east-2-036883958305
+  run: rails db:migrate
+  on:
+    branch: travis
