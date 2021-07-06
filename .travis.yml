@@ -20,5 +20,6 @@ deploy:
     app: "viewing party"
     env: "Viewingparty-env"
     bucket: "elasticbeanstalk-us-east-2-036883958305"
+    run: rails db:migrate
     on:
       branch: travis
