@@ -13,8 +13,9 @@ deploy:
   - provider: heroku
     app: viewingpartyzjg
     api_key: $HEROKU_API_KEY
+    run: rails db:migrate
     on:
-      branch: travis
+      branch: main
 
   - provider: elasticbeanstalk
     access_key_id: $ACCESS_KEY_ID
