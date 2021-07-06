@@ -13,9 +13,9 @@ deploy:
 #   run: rails db:migrate
   - provider: elasticbeanstalk
     access_key_id:
-      secure: "Encrypted <access-key-id>="
+      secure: Azh2CZ6hbf8+eRbKFiom9qef53DhpxNDTkigzoBBXwaxV93uuWqe23cF9HN6rvtA5m4bNmHzhkYBJj0WFkDdw73cye//TP6o+kl4Rp6khrTrytSp3ETLWyIBgAMop2gxH5svRi9MRzgQBZ64BTNwdh1/lVMWg5Cgte1npY/KAerC50HPA+cRffkKu9matr3ehK1E7B9yYF/Hfe07oprgMZQvp7EyjYumcw+EFZaulznnQeE+nthRFSf+JFuGme1rrak3FRBRQ3sBNmGcqlcxhj55KCL6ngn2X3fUY1hBkFJFN6o013Cde4BsMZWWJ/o+2TxKG69xxOi1QhSY6YvzwtbsZI1h7UpTzzKBDms+eCWrYnk5t7ackHk2VXzB6i1NDxlp+WKWPIjrAgz0dw8T/8PkHytlf0qyg6dYXS5nVPybBTAt52M4PMbXdFHeBOrPC1MCXwv2m0BxPws/olS5D8fM1hbcC2t2dTVg7r9raVgE7a1aDQ2O2TSR6rFVAtBX/+9EM7Kt2OwoJ54R1plioQ6T1xIKd7NYShYEWreiDjX/xdhVm67IsVfT6qlQMtiWj688R/ASUyF6vqfIMHw7G2WCYiiUP5V/ldENyC1Nx5cIzP0RB830UCqi8Rp3ns0EsbmHzWudQYbCDaEO8ArV/4kODWro9qSj1Ae7nQP3UUQ=
     secret_access_key:
-      secure: "Encypted <secret-access-key>="
+      secure: "lE9sZnxtoiXlgQaxNv3pmDgFsPK6s/pI43XU+CBimFBDuZoNIu7gboqervChkqdJhEYj+ZSKLnBcfYgd6VPV+BR/FqxSlDT2Q72gF5VseshslrrXQzNwbjnz4QUJC/hoSmIGZD3F9PJPas0o5dHDaw7IWOErjIBdFs057IVjBlbCrzGdbyMa1R5zxZWcD05f/91oQDKNnwEk1rzLN/7bbbemtmIWHt/DThZXNAxvBHZuhpm8AFDaTSJQeU7sNB3wPccLMwSEyOymfqpIh/6RwrywqVHO/8e5cr+OFs0y7TX1LoOjk87w3xPixB2f2oZ7xi2aeK9i0KFDomfxF54b7YVOj95zoC10NV8ADQQnz2fVj/43SdQWCeTET70cHMsO3UvIfcwsy8G/q+YTW/cR8nkJM9oDSTGlJui6ge1fcIZ/8VNYhqM2WosiwIyLceU2MMFM/ozAF7FSBVLPp2RSfkTrFt6zrUVSmMuZ0U60yRer0N7k6ZPqjku+oLkfPESFe1sWHG/efy3pXNgkGnS6bYzIcUbOjb34sOSsR0qVWnwI/UWJKZZtpE/nZYfSrlIMnmtE0geSch2CjOkFxYPMYBdSISQt+9iwFxVGxj5U7F768vEkUwNMsJ0N/YzOh2j4bqWMrxIvdNzrYZSz7aBlzNnlCMTiQxO5MSgHrQovhP0="
     region: "us-east-2"
     app: "viewing party"
     env: "Viewingparty-env"
