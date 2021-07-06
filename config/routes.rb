@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
-  root to: 'welcome#index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get '/login', to: 'sessions#login'
+  post '/login', to: 'sessions#create'
+  
+  root to: 'sessions#welcome'
 end
