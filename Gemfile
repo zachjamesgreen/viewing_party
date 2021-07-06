@@ -16,6 +16,9 @@ gem 'coffee-rails', '~> 4.2'
 gem 'bootsnap'
 gem 'jbuilder', '~> 2.5'
 
+gem 'webpacker'
+gem 'faraday'
+
 group :development, :test do
   gem 'pry'
   gem 'travis'
