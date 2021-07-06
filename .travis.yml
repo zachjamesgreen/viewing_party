@@ -6,8 +6,16 @@ addons:
 script:
 - bundle exec rails db:{create,migrate} RAILS_ENV=test
 - bundle exec rspec
-# deploy:
+deploy:
 #   provider: heroku
 #   api_key:
 #   app:
 #   run: rails db:migrate
+  - provider: elasticbeanstalk
+    access_key_id:
+      secure: "Encrypted <access-key-id>="
+    secret_access_key:
+      secure: "Encypted <secret-access-key>="
+    region: "us-east-2"
+    app: "viewing party"
+    env: "Viewingparty-env"
