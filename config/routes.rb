@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
 
   get '/register', to: 'users#new'
-
+  resources :users
   root to: 'sessions#welcome'
 end
