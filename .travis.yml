@@ -13,10 +13,7 @@ deploy:
   - provider: heroku
     app: viewingpartyzjg
     api_key: $HEROKU_API_KEY
-    run: 
-      - "rails db:migrate"
-      - "yarn install"
-      - "bundle exec rails webpacker:compile"
+    run: rails db:migrate
     on:
       branch: main
 
