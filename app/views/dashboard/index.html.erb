@@ -8,8 +8,14 @@
 
   <!-- Friends Section -->
   <div class="flex justify-around pb-16">
-    <div id="friends" class="bg-white px-16 rounded-xl border-black h-full">
+    <div id="friends" class="bg-white px-16 rounded-xl border border-black h-full">
       <h4 class="text-2xl pl-4">Friends</h4>
+      <!-- Form to add friend -->
+      <%= form_with url: '/add_friend', local: true, class: 'pl-4 pt-2' do |f| %>
+        <label for="friend">Add Friend</label>
+        <%= f.text_field :email, class: 'border border-black rounded' %>
+      <% end %>
+
       <ul class="grid grid-cols-4">
         <li class="p-4">Friend 1</li>
         <li class="p-4">Friend 2</li>
@@ -23,7 +29,7 @@
     </div>
 
     <!-- Parties Section -->
-    <div id="parties" class="flex flex-col bg-white px-16 rounded-xl border-black items-center">
+    <div id="parties" class="flex flex-col bg-white px-16 rounded-xl border border-black items-center">
       <h3 class="text-3xl underline">Viewing Parties</h3>
 
       <div class="flex flex-col items-center">
