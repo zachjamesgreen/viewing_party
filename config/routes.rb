@@ -10,9 +10,10 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: 'dashboard#index', as: 'dashboard'
 
-
   get '/register', to: 'users#new'
   resources :users
+
+  resources :user_friends, only: [:create]
 
   root to: 'sessions#welcome'
 end

@@ -12,8 +12,9 @@
       <h4 class="text-2xl pl-4">Friends</h4>
       <!-- Form to add friend -->
       <%= form_with url: '/add_friend', local: true, class: 'pl-4 pt-2' do |f| %>
-        <label for="friend">Add Friend</label>
+        <label for="friend">Add Friend By Email Address</label>
         <%= f.text_field :email, class: 'border border-black rounded' %>
+        <%= f.submit 'Add Friend' %>
       <% end %>
 
       <ul class="grid grid-cols-4">

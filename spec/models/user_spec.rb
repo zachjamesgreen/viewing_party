@@ -9,6 +9,7 @@ RSpec.describe User do
   end
   describe 'relationships' do
     it { should have_many(:user_friends).dependent(:destroy) }
+    it { should have_many(:friends).through(:user_friends) }
   end
 
   describe 'validations' do
