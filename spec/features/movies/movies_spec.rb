@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Movies' do
+RSpec.describe 'Movies', :vcr do
   # before :all do
   #   @user_info = {
   #     username: 'ABCDE',
@@ -17,8 +17,12 @@ RSpec.describe 'Movies' do
   #   fill_in :password, with: @user_info[:password]
   #   click_on 'commit'
   # end
+  #
+  def discover_test
+    TMDBService.discover
+  end
 
-  context 'discover page' do
+  context 'discover page', :vcr do
     xit 'should not allow unauth user' do
       visit discover_path
       expect(page).to have_current_path '/login'
@@ -29,6 +33,21 @@ RSpec.describe 'Movies' do
       visit discover_path
       expect(page).to have_current_path('/discover')
       expect(page).to have_field 'search'
+    end
+
+    it 'has all info' do
+      visit discover_path
+      movies = discover_test
+      expect(movies).is_a?(Array)
+      4.times do |idx|
+        expect(movies[idx]).to be_instance_of(Movie)
+        expect(page).to have_content(movies[idx].title)
+        expect(page).to have_content("Average Rating: #{movies[idx].vote_average}")
+        img_id = "##{movies[idx].id}-image"
+        expect(page.find(img_id)['src']).to have_content("#{movies[idx].image_base_url}#{movies[idx].poster_path}")
+      end
+      expect(page.all('.movie').size).to eq 4
+
     end
   end
 
