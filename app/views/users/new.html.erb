@@ -1,25 +1,16 @@
 <div class="w-screen h-full">
 
-  <div class="flex flex-col items-center h-1/2 w-1/4 bg-gray-200 rorunded-3xl p-32" style="margin-top: 8%; margin-left: 37%;">
-    <h2>Register as a New User</h2>
-    <%= form_with model: @user do |f| %>
-    <div class="flex flex-col mb-4">
-      <label for="email" class="text-xl">Email</label>
-      <%= f.text_field :email %>
-    </div>
-    <div class="flex flex-col mb-4">
-      <label for="username" class="text-xl">Username</label>
-      <%= f.text_field :username %>
-    </div>
-    <div class="flex flex-col mb-4">
-      <label for="password" class="text-xl">Password</label>
-      <%= f.password_field :password %>
-    </div>
-    <div class="flex flex-col mb-4">
-      <label for="password_confirmation" class="text-xl">Confirm Password</label>
-      <%= f.password_field :password_confirmation %>
-    </div>
-    <%= f.submit class: 'bg-blue-400 px-4 py-2 rounded hover:bg-opacity-70' %>
+  <div class="flex flex-col items-center h-1/2 w-1/3 bg-gray-200 rounded-3xl p-16" style="margin-top: 8%; margin-left: 32%;">
+    <h2 class="text-4xl pb-4">Register as a New User</h2>
+    <%= form_with model: @user, class: 'w-full' do |f| %>
+      <div class="flex flex-col space-y-4 pb-4">
+        <%= f.text_field :email, placeholder: 'Email', class: 'p-4 rounded' %>
+        <%= f.text_field :username, placeholder: 'Username', class: 'p-4 rounded' %>
+        <%= f.password_field :password, placeholder: 'Password', class: 'p-4 rounded' %>
+        <%= f.password_field :password_confirmation, placeholder: 'Password Confirmation', class: 'p-4 rounded' %>
+      </div>
+      <%= f.submit class: 'bg-blue-400 px-4 py-2 rounded hover:bg-opacity-70' %>
+
     <% end %>
   </div>
 
