@@ -1,13 +1,29 @@
 language: ruby
 rbenv:
-- 2.5.3
+- 2.7.2
 addons:
   postgresql: 9.6
 script:
+- nvm install node
+- yarn install
 - bundle exec rails db:{create,migrate} RAILS_ENV=test
+- bundle exec rails webpacker:compile
 - bundle exec rspec
 deploy:
-  provider: heroku
-  api_key:
-  app:
-  run: rails db:migrate
+  - provider: heroku
+    app: viewingpartyzjg
+    api_key: $HEROKU_API_KEY
+    run: rails db:migrate
+    on:
+      branch: main
+
+#   - provider: elasticbeanstalk
+#     access_key_id: $ACCESS_KEY_ID
+#     secret_access_key: $SECRET_ACCESS_KEY
+#     region: us-east-2
+#     app: viewing party
+#     env: Viewingparty-env
+#     bucket: elasticbeanstalk-us-east-2-036883958305
+#     run: rails db:migrate
+#     on:
+#       branch: travis
