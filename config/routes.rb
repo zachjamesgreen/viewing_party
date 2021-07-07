@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   get '/movies', to: 'movies#movies', as: 'movies'
   post '/movies', to: 'movies#search', as: 'search'
   get '/movies/:id', to: 'movies#show', as: 'movie'
-  
+
+  get '/register', to: 'users#new'
+  resources :users
+
   root to: 'sessions#welcome'
 end

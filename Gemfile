@@ -18,12 +18,11 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'webpacker'
 gem 'faraday'
+gem 'bcrypt'
 
 group :development, :test do
   gem 'pry'
   gem 'travis'
-  gem 'faraday'
-  gem 'webpacker'
   gem 'shoulda-matchers'
 end
 
