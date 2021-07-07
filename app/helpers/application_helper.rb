@@ -4,6 +4,20 @@ module ApplicationHelper
   def format_minutes(time)
     minutes = time % 60
     hour = (time - minutes) / 60
-    "#{hour}:#{minutes}"
+    str = if hour > 1
+            "#{hour} hours "
+          elsif hour == 0
+            ''
+          else
+            "#{hour} hour "
+          end
+    str += if minutes > 1
+             "#{minutes} minutes"
+           elsif minutes == 0
+             ''
+           else
+             "#{minutes} minute"
+           end
+    str.strip
   end
 end

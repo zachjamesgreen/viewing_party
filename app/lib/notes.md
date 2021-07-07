@@ -15,3 +15,7 @@ Methods we might need on api class
     1. https://api.themoviedb.org/3/movie/<>/reviews?api_key=
 
 image_base_url = 'https://image.tmdb.org/t/p/original'
+
+Can get movie reviews and cast with one call
+
+https://api.themoviedb.org/3/movie/588228?api_key=<key>&append_to_response=reviews,credits
