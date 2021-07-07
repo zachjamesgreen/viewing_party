@@ -1,12 +1,10 @@
 class Movie
-  attr_reader :id, :poster_path, :vote_average, :title, :runtime, :overview
+  attr_reader :id, :poster_path, :vote_average, :title
 
-  def initialize(id:, poster_path:, vote_average:, title:, runtime:, overview:)
-    @id = id
-    @poster_path = poster_path
-    @vote_average = vote_average
-    @title = title
-    @runtime = runtime
-    @overview = overview
+  def initialize(info)
+    @id = info[:id]
+    @poster_path = info[:poster_path]
+    @vote_average = info[:vote_average]
+    @title = info[:title]
   end
 end
