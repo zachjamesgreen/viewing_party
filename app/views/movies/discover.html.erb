@@ -5,12 +5,12 @@
   </div>
 
   <div class="flex flex-1 justify-center h-1/2 space-x-8">
-    <% 4.times do |idx| %>
-      <div class=" movie px-8 pt-8 pb-4 bg-blue-400 bg-opacity-70 rounded-xl" id="<%= @movies[idx].id %>">
-        <img src="<%= @movies[idx].image_base_url %>w342<%= @movies[idx].poster_path %>" alt="" id="<%= @movies[idx].id %>-image">
+    <% @movies.each do |movie| %>
+      <div class=" movie px-8 pt-8 pb-4 bg-blue-400 bg-opacity-70 rounded-xl" id="<%= movie.id %>">
+        <img src="<%= movie.image_base_url %>w342<%= movie.poster_path %>" alt="" id="<%= movie.id %>-image">
         <div class="">
-          <p class="text-2xl"><%= @movies[idx].title %></p>
-          <p class="text-md">Average Rating: <%= @movies[idx].vote_average %></p>
+          <p class="text-2xl"><%= movie.title %></p>
+          <p class="text-md">Average Rating: <%= movie.vote_average %></p>
         </div>
       </div>
     <% end %>
