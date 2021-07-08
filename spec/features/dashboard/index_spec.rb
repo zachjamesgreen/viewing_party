@@ -50,6 +50,10 @@ RSpec.describe 'Dashboard Index' do
       expect(page).to have_content('Sorry! Friend not added.')
     end
 
+    it 'starts with zero friends' do
+      expect(page).to have_content 'You currently have no friends!'
+    end
+
     it 'should have a viewing party section' do
       expect(page).to have_content('Viewing Parties')
     end
