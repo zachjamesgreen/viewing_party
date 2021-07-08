@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get '/register', to: 'users#new'
   resources :users
 
-  resources :user_friends, only: [:create]
+  post '/add_friend', to: 'user_friends#create', as: 'add_friend'
 
   root to: 'sessions#welcome'
 end
