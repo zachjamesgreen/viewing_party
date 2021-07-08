@@ -1,6 +1,7 @@
 class ViewPartiesController < ApplicationController
   def new
-    @viewing_party = ViewParty.new
+    @movie = MovieDetail.parse(params[:movie])
+    @viewing_party = ViewParty.new(user_id: 1, movie_id: @movie.id)
   end
 
   def create

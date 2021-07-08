@@ -2,13 +2,14 @@
 
   <div class="items-center h-1/2 w-1/2 bg-gray-200 rounded-3xl p-32" style="margin-top: 8%; margin-left: 25%;">
 
-    <h1>Create a View Party for (Movie)</h1>
+    <h1>Create a View Party for <span class="font-semibold"><%= @movie.title %></span></h1>
 
     <%= form_with model: @viewing_party, method: :post, local: true, class: 'space-y-4' do |f| %>
       <!-- set to 10 hours maybe-->
       <div class="flex flex-col">
         <%= f.label :duration %>
-        <%= f.range_field :duration %>
+        <%= f.range_field :duration, min: @movie.runtime, max: 600, step: 1, value: @movie.runtime, id: 'duration_slider'  %>
+        <p id="duration_slider_output"><%= format_minutes @movie.runtime %></p>
       </div>
       <div class="flex">
         <%= f.label :date %>
@@ -18,18 +19,30 @@
         <%= f.label :time %>
         <%= f.time_select :time, minute_step: 15, ampm: true %>
       </div>
-      <div class="flex flex-col">
-        <div class="flex">
+      <div class="grid grid-cols-3 gap-4">
+        <div class="">
           <%= f.label 'Friend 1' %>
           <%= f.check_box 'friends', {:multiple => true}, 1 %>
         </div>
-        <div class="flex">
+        <div class="">
           <%= f.label 'Friend 2' %>
           <%= f.check_box 'friends', {:multiple => true}, 2 %>
         </div>
-        <div class="flex">
+        <div class="">
           <%= f.label 'Friend 3' %>
           <%= f.check_box 'friends', {:multiple => true}, 3 %>
+        </div>
+        <div class="">
+          <%= f.label 'Friend 4' %>
+          <%= f.check_box 'friends', {:multiple => true}, 4 %>
+        </div>
+        <div class="">
+          <%= f.label 'Friend 5' %>
+          <%= f.check_box 'friends', {:multiple => true}, 5 %>
+        </div>
+        <div class="">
+          <%= f.label 'Friend 6' %>
+          <%= f.check_box 'friends', {:multiple => true}, 6 %>
         </div>
       </div>
 
@@ -40,3 +53,17 @@
   </div>
 
 </div>
+
+<script>
+    slider = document.getElementById('duration_slider')
+    slider_output = document.getElementById('duration_slider_output')
+    slider.addEventListener('input', function(e){
+        slider_output.innerText = format_time(e.target.value)
+    })
+
+    function format_time(time){
+        var minutes = time % 60
+        var hours = (time - minutes) / 60
+        return `${hours} hours ${minutes} minutes`
+    }
+</script>
