@@ -13,7 +13,7 @@ RSpec.describe 'Dashboard Index' do
     it 'welcomes the user' do
       #TODO still need authenticated user to finish test
       # expect(page).to have_content('Welcome ' + user.name)
-      expect(page).to have_content('Welcome User')
+      expect(page).to have_content('Welcome Tim')
     end
 
     it 'has link to discover movies' do
