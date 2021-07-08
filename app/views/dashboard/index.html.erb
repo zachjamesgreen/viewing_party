@@ -18,11 +18,13 @@
       <% end %>
 
       <ul class="grid grid-cols-4">
-        <% if @user.friends.empty? %>
-          <h4 class="text-2xl pl-4">You currently have no friends!</h4>
-        <% else %>
+        <h4 class="text-2xl pl-4">Your Friends:</h4>
+        <% if !@user.friends.empty? %>
           <% @user.friends.each do |friend| %>
-          <li class="p-4"><%= friend.name %></li>
+            <li class="p-4"><%= "Friend Username: #{friend.username}, Friend Email: #{friend.email} " %></li>
+          <% end %>
+        <% else %>
+          <h4 class="text-2xl pl-4">You currently have no friends!</h4>
         <% end %>
       </ul>
     </div>

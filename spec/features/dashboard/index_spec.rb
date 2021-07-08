@@ -54,6 +54,38 @@ RSpec.describe 'Dashboard Index' do
       expect(page).to have_content 'You currently have no friends!'
     end
 
+    it 'displays all added friends' do
+      sally = User.create!(username:'Sally', email: 'sally@ex.com', password_digest: 'apples')
+      mally = User.create!(username:'Mally', email: 'mally@ex.com', password_digest: 'apples')
+      fally = User.create!(username:'Fally', email: 'fally@ex.com', password_digest: 'apples')
+      @user.user_friends.create!(user: @user, friend: sally)
+      @user.user_friends.create!(user: @user, friend: mally)
+      @user.user_friends.create!(user: @user, friend: fally)
+
+      visit dashboard_path
+
+      expect(page).to have_content(sally.username)
+      expect(page).to have_content(sally.email)
+      expect(page).to have_content(mally.username)
+      expect(page).to have_content(mally.email)
+      expect(page).to have_content(fally.username)
+      expect(page).to have_content(fally.email)
+    end
+
+    it 'displays formatting for added friends' do
+      sally = User.create!(username:'Sally', email: 'sally@ex.com', password_digest: 'apples')
+      mally = User.create!(username:'Mally', email: 'mally@ex.com', password_digest: 'apples')
+      fally = User.create!(username:'Fally', email: 'fally@ex.com', password_digest: 'apples')
+      @user.user_friends.create!(user: @user, friend: sally)
+      @user.user_friends.create!(user: @user, friend: mally)
+      @user.user_friends.create!(user: @user, friend: fally)
+
+      visit dashboard_path
+
+      expect(page).to have_content('Friend Username:', count: 3)
+      expect(page).to have_content('Friend Email:', count: 3)
+    end
+
     it 'should have a viewing party section' do
       expect(page).to have_content('Viewing Parties')
     end

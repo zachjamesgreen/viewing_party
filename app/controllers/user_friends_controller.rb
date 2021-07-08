@@ -5,10 +5,9 @@ class UserFriendsController < ApplicationController
     new_friendship = user.user_friends.new(user: user, friend: friend)
     if new_friendship.save
       flash[:success] = "#{friend.username} added as a friend!"
-      redirect_to dashboard_path
     else
-      flash[:error] = "Sorry! Friend not added."
-      redirect_to dashboard_path
+      flash[:error] = 'Sorry! Friend not added.'
     end
+    redirect_to dashboard_path
   end
 end
