@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: 'dashboard#index', as: 'dashboard'
 
+  resources :view_parties, only: [:show, :new, :create]
+
 
   get '/register', to: 'users#new'
   resources :users
