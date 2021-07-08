@@ -19,7 +19,7 @@ RSpec.describe 'Login page' do
       email: 'z@g.com'
     }
 
-    User.create! user_info
+    User.create user_info
 
     visit login_path
     expect(page).to have_current_path('/login')
@@ -38,7 +38,7 @@ RSpec.describe 'Login page' do
       email: 'z@g.com'
     }
 
-    User.create! user_info
+    User.create user_info
 
     # Bad username
     visit login_path

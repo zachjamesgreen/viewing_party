@@ -47,7 +47,6 @@ RSpec.describe 'Movies', :vcr do
         expect(page.find(img_id)['src']).to have_content("#{movies[idx].image_base_url}w342#{movies[idx].poster_path}")
       end
       expect(page.all('.movie').size).to eq 4
-
     end
   end
 
@@ -65,7 +64,11 @@ RSpec.describe 'Movies', :vcr do
       # TODO authenticate user
       # TODO make sure to get stubbed data
       visit '/movies/1'
-      expect(page).to have_link 'Create Viewing Party'
+
+      within 'form' do
+        visible = find("input[type=submit][value='Create Viewing Party']").visible?
+        expect(visible).to eq true
+      end
     end
   end
 end
