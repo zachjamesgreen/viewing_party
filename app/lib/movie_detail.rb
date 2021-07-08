@@ -9,4 +9,8 @@ class MovieDetail < Movie
     @cast = info[:credits][:cast]
     @reviews = info[:reviews][:results]
   end
+
+  def self.parse(movie)
+    MovieDetail.new(JSON.parse(movie, symbolize_names: true))
+  end
 end
