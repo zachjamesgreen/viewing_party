@@ -22,7 +22,18 @@ RSpec.describe 'New User Page' do
     fill_in('user[password_confirmation]', :with => 'luvshotdogs')
     click_button('Create User')
 
-    expect(current_path).to eq('/')
+    expect(current_path).to eq('/dashboard')
+    expect(page).to have_content('Welcome, Tim!')
+  end
+
+  it 'logs in upon creation' do
+    fill_in('user[email]', :with => 'Tim@mail.orb')
+    fill_in('user[username]', :with => 'Tim')
+    fill_in('user[password]', :with => 'luvshotdogs')
+    fill_in('user[password_confirmation]', :with => 'luvshotdogs')
+    click_button('Create User')
+
+    expect(current_path).to eq('/dashboard')
     expect(page).to have_content('Welcome, Tim!')
   end
 

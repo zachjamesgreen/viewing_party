@@ -1,7 +1,7 @@
 <div class="w-screen bg-gray-200 rounded-2xl">
   <!-- User Greeting -->
   <div class="flex space-x-8 py-12 pl-24">
-    <h1 class="text-4xl">Welcome User</h1>
+    <h1 class="text-4xl"> <%= "Welcome #{@user.username}" %></h1>
 
     <a href="/discover" class="bg-blue-400 hover:bg-opacity-70 rounded p-4">Discover Movies</a>
   </div>
