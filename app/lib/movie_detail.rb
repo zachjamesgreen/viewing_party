@@ -6,5 +6,7 @@ class MovieDetail < Movie
     @runtime = info[:runtime]
     @overview = info[:overview]
     @genres = info[:genres]
+    @cast = info[:credits][:cast]
+    @reviews = info[:reviews][:results]
   end
 end
