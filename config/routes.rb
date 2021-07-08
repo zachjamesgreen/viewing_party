@@ -5,7 +5,6 @@ Rails.application.routes.draw do
 
   get '/discover', to: 'movies#discover', as: 'discover'
   get '/movies', to: 'movies#movies', as: 'movies'
-  post '/movies', to: 'movies#search', as: 'search'
   get '/movies/:id', to: 'movies#show', as: 'movie'
 
   get '/dashboard', to: 'dashboard#index', as: 'dashboard'

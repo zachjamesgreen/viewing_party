@@ -1,18 +1,12 @@
 class MoviesController < ApplicationController
+
   def discover
     # use discover endpoint only 4
-    @image_base_url = 'https://image.tmdb.org/t/p/original'
-    @movie = {
-      id: 1,
-      poster_path: '/qIicLxr7B7gIt5hxZxo423BJLlK.jpg',
-      vote_average: 8.2,
-      title: 'F9'
-    }
+    @movies = TMDBService.discover
   end
 
   def movies
     # only 40
-    @image_base_url = 'https://image.tmdb.org/t/p/original'
     @movie = {
       id: 1,
       poster_path: '/qIicLxr7B7gIt5hxZxo423BJLlK.jpg',
@@ -26,6 +20,7 @@ class MoviesController < ApplicationController
 
   def show
     # only 40
+    # add original to image url
     @image_base_url = 'https://image.tmdb.org/t/p/original'
     @movie = {
       id: 1,
