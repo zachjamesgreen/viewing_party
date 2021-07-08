@@ -20,6 +20,8 @@ class MoviesController < ApplicationController
 
   def show
     # only 40
+    # add original to image url
+    @image_base_url = 'https://image.tmdb.org/t/p/original'
     @movie = {
       id: 1,
       poster_path: '/qIicLxr7B7gIt5hxZxo423BJLlK.jpg',

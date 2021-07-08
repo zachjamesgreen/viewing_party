@@ -6,6 +6,6 @@ class Movie
     @poster_path = info[:poster_path]
     @vote_average = info[:vote_average]
     @title = info[:title]
-    @image_base_url = 'https://image.tmdb.org/t/p/original'
+    @image_base_url = 'https://image.tmdb.org/t/p/'
   end
 end

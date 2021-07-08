@@ -7,6 +7,6 @@ class MovieDetail < Movie
     @overview = info[:overview]
     @genres = info[:genres]
     @cast = info[:credits][:cast]
-    @reviews = info[:reviews]
+    @reviews = info[:reviews][:results]
   end
 end
