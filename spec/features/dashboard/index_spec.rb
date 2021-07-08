@@ -33,12 +33,21 @@ RSpec.describe 'Dashboard Index' do
     end
 
     it 'adds a friend' do
-      sally = User.create!(username:'Sally', email: 'sally@ex.com', password_digest: 'apples')
+      User.create!(username:'Sally', email: 'sally@ex.com', password_digest: 'apples')
       fill_in :email, with: 'sally@ex.com'
       click_button('Add Friend')
 
       expect(current_path).to eq dashboard_path
       expect(page).to have_content('Sally added as a friend!')
+    end
+
+    it 'does not add friends who do not exist' do
+      User.create!(username:'Sally', email: 'sally@ex.com', password_digest: 'apples')
+      fill_in :email, with: 'bally@ex.com'
+      click_button('Add Friend')
+
+      expect(current_path).to eq dashboard_path
+      expect(page).to have_content('Sorry! Friend not added.')
     end
 
     it 'should have a viewing party section' do
