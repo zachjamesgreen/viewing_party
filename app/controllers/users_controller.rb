@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       redirect_to '/'
     else
       flash[:error] = 'Sorry, account not created! Incorrect/missing info'
-      redirect_to '/register'
+      redirect_to register_path
     end
   end
 
