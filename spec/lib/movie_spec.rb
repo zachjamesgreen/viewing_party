@@ -19,6 +19,7 @@ RSpec.describe Movie do
         }
       ],
       credits: {},
+      reviews: {},
       overview: 'The world is stunned when a group of time travelers arrive from the year 2051 to deliver an urgent message: Thirty years in the future, mankind is'
     })
 
