@@ -10,13 +10,6 @@ RSpec.describe 'Movies', :vcr do
     click_button('Submit')
   end
 
-  # def login
-  #   visit login_path
-  #   fill_in :username, with: @user_info[:username]
-  #   fill_in :password, with: @user_info[:password]
-  #   click_on 'commit'
-  # end
-
   def discover_test
     TMDBService.discover
   end
@@ -31,10 +24,17 @@ RSpec.describe 'Movies', :vcr do
     end
 
     it 'has form with search box' do
-      # TODO authenticate user
       visit discover_path
       expect(page).to have_current_path('/discover')
       expect(page).to have_field 'search'
+    end
+
+    it 'searching retrieves searched for movies' do
+      visit discover_path
+      fill_in :search, with: 'fast'
+      click_button('Search')
+
+      expect(current_path).to eq('/movies')
     end
 
     it 'has all info' do
@@ -49,13 +49,11 @@ RSpec.describe 'Movies', :vcr do
         expect(page.find(img_id)['src']).to have_content("#{movies[idx].image_base_url}w342#{movies[idx].poster_path}")
       end
       expect(page.all('.movie').size).to eq 4
-
     end
   end
 
   context 'movies page' do
     it 'has form with search box' do
-      # TODO authenticate user
       visit movies_path
       expect(page).to have_current_path('/movies')
       expect(page).to have_field 'search'
