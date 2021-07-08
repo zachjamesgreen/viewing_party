@@ -1,31 +1,33 @@
 require 'rails_helper'
 
 RSpec.describe 'Movies', :vcr do
-  # before :all do
-  #   @user_info = {
-  #     username: 'ABCDE',
-  #     email: 'z@g.com',
-  #     password: 'test'
-  #   }
-  #
-  #   @user = User.create @user_info
-  # end
-  #
+  before(:each)do
+    User.destroy_all
+    @user = User.create!(username: 'ABCDE', email: 'z@g.com', password: 'test')
+    visit login_path
+    fill_in :username, with: @user.username
+    fill_in :password, with: @user.password
+    click_button('Submit')
+  end
+
   # def login
   #   visit login_path
   #   fill_in :username, with: @user_info[:username]
   #   fill_in :password, with: @user_info[:password]
   #   click_on 'commit'
   # end
-  #
+
   def discover_test
     TMDBService.discover
   end
 
-  context 'discover page', :vcr do
-    xit 'should not allow unauth user' do
+  context 'discover page' do
+    it 'should not allow unauth user' do 
+      visit discover_path
+      click_button('Log Out')
       visit discover_path
       expect(page).to have_current_path '/login'
+      expect(page).to have_content('You must be logged in to access this section')
     end
 
     it 'has form with search box' do

@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
   def discover
-    # use discover endpoint only 4
-    @movies = TMDBService.discover[0..3]
+      require_login
+      @movies = TMDBService.discover[0..3]
   end
 
   def movies

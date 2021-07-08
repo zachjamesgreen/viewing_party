@@ -1,4 +1,8 @@
 <div class="flex flex-col bg-gray-200 p-8 justify-center">
+  
+  <div class="flex justify-right m-8">
+    <%= render 'shared/logout' %>
+  </div>
 
   <div class="flex justify-center m-8">
     <%= render 'layouts/search_form' %>
@@ -6,13 +10,13 @@
 
   <div class="flex flex-1 justify-center h-1/2 space-x-8">
     <% @movies.each do |movie| %>
-      <div class=" movie px-8 pt-8 pb-4 bg-blue-400 bg-opacity-70 rounded-xl" id="<%= movie.id %>">
-        <img src="<%= movie.image_base_url %>w342<%= movie.poster_path %>" alt="" id="<%= movie.id %>-image">
-        <div class="">
-          <p class="text-2xl"><%= movie.title %></p>
-          <p class="text-md">Average Rating: <%= movie.vote_average %></p>
-        </div>
+    <div class=" movie px-8 pt-8 pb-4 bg-blue-400 bg-opacity-70 rounded-xl" id="<%= movie.id %>">
+      <img src="<%= movie.image_base_url %>w342<%= movie.poster_path %>" alt="" id="<%= movie.id %>-image">
+      <div class="">
+        <p class="text-2xl"><%= movie.title %></p>
+        <p class="text-md">Average Rating: <%= movie.vote_average %></p>
       </div>
+    </div>
     <% end %>
   </div>
 </div>
