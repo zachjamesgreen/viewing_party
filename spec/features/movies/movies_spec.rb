@@ -44,7 +44,7 @@ RSpec.describe 'Movies', :vcr do
         expect(page).to have_content(movies[idx].title)
         expect(page).to have_content("Average Rating: #{movies[idx].vote_average}")
         img_id = "##{movies[idx].id}-image"
-        expect(page.find(img_id)['src']).to have_content("#{movies[idx].image_base_url}#{movies[idx].poster_path}")
+        expect(page.find(img_id)['src']).to have_content("#{movies[idx].image_base_url}w342#{movies[idx].poster_path}")
       end
       expect(page.all('.movie').size).to eq 4
 
