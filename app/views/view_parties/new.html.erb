@@ -19,8 +19,18 @@
         <%= f.time_select :time, minute_step: 15, ampm: true %>
       </div>
       <div class="flex flex-col">
-        <%= f.label :friends %>
-        <%= f.collection_check_boxes  :friends, [], :id, :username %>
+        <div class="flex">
+          <%= f.label 'Friend 1' %>
+          <%= f.check_box 'friends', {:multiple => true}, 1 %>
+        </div>
+        <div class="flex">
+          <%= f.label 'Friend 2' %>
+          <%= f.check_box 'friends', {:multiple => true}, 2 %>
+        </div>
+        <div class="flex">
+          <%= f.label 'Friend 3' %>
+          <%= f.check_box 'friends', {:multiple => true}, 3 %>
+        </div>
       </div>
 
 
