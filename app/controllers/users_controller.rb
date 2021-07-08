@@ -9,7 +9,8 @@ class UsersController < ApplicationController
     new_user = User.new(user)
     if new_user.save
       flash[:success] = "Welcome, #{new_user[:username]}!"
-      redirect_to '/'
+      session[:user_id] = new_user.id
+      redirect_to dashboard_path
     else
       flash[:error] = 'Sorry, account not created! Incorrect/missing info'
       redirect_to register_path
