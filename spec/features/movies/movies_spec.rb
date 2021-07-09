@@ -29,7 +29,7 @@ RSpec.describe 'Movies', :vcr do
       expect(page).to have_field 'search'
     end
 
-    it 'searching retrieves searched for movies' do
+    it 'searching redirects to movies page' do
       visit discover_path
       fill_in :search, with: 'fast'
       click_button('Search')

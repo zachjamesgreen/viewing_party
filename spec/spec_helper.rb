@@ -22,6 +22,7 @@ VCR.configure do |config|
   config.cassette_library_dir = "spec/vcr_cassettes"
   config.hook_into :webmock
   config.configure_rspec_metadata!
+  config.filter_sensitive_data('<api_key>') { ENV['TMDB_API_KEY']}
 end
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
