@@ -89,5 +89,30 @@ RSpec.describe 'Dashboard Index' do
     it 'should have a viewing party section' do
       expect(page).to have_content('Viewing Parties')
     end
+
+    it 'list all view partys' do
+      u1 = create(:user)
+      user_vps = []
+      u1_vps = []
+      3.times do
+        user_vps << create(:view_party, user: @user)
+        u1_vps << create(:view_party, user: u1)
+      end
+      user_vps.each do |vp|
+        ViewPartyUser.create!(view_party_id: vp.id, user_id: u1.id)
+      end
+      u1_vps.each do |vp|
+        ViewPartyUser.create!(view_party_id: vp.id, user_id: @user.id)
+      end
+      visit dashboard_path
+      ViewPartyUser.all.each do |vpu|
+        expect(page).to have_content(vpu.user.username)
+        expect(find_all('p', text: "Host: #{u1.username}").size).to eq 3
+        expect(find_all('p', text: @user.username).size).to eq 3
+      end
+      ViewParty.all do |vp|
+        expect(page).to have_content(vp.event_time.to_formatted_s(:long))
+      end
+    end
   end
 end

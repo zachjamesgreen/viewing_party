@@ -68,9 +68,30 @@ RSpec.describe 'Movies', :vcr do
   context 'movie details page' do
     it 'has link to create viewing party' do
       # TODO authenticate user
-      # TODO make sure to get stubbed data
-      visit '/movies/1'
-      expect(page).to have_link 'Create Viewing Party'
+      movie = TMDBService.movie(508943)
+      visit '/movies/508943'
+
+      expect(page).to have_content(movie.title)
+      expect(page).to have_content(movie.vote_average)
+      expect(page).to have_content(format_minutes(movie.runtime))
+      expect(page).to have_content(movie.overview)
+      movie.genres.each do |genre|
+        expect(page).to have_content(genre[:name])
+      end
+      movie.cast[0..9].each do |cast|
+        expect(page).to have_content(cast[:name])
+        expect(page).to have_content(cast[:character])
+      end
+      movie.reviews.each do |review|
+        expect(page).to have_content(review[:author])
+        # expect(page).to have_content(review[:content])
+      end
+
+
+      within 'form' do
+        visible = find("input[type=submit][value='Create Viewing Party']").visible?
+        expect(visible).to eq true
+      end
     end
   end
 end
