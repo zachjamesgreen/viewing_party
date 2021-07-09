@@ -5,39 +5,41 @@ class ViewPartiesController < ApplicationController
   end
 
   def create
-    event_time = get_event_time
-    friends = get_friends_array
+    event_time = parse_event_time
     movie_id = view_party_params[:movie_id]
-    # movie_name = view_party_params[:movie_name]
+    movie_title = view_party_params[:movie_title]
     duration = view_party_params[:duration]
-    view_party = ViewParty.create(movie_id: movie_id, event_time: event_time, duration: duration)
-    ViewPartyUser.create(user_id: current_user.id, view_party_id: view_party.id)
-    get_friends_array.each do |friend|
-      ViewPartyUser.create(view_party_id: view_party.id, user_id: friend.id)
+    view_party = ViewParty.create!(
+      user_id: current_user.id,
+      movie_id: movie_id,
+      event_time: event_time,
+      duration: duration,
+      movie_title: movie_title
+    )
+    friends_array.each do |friend|
+      ViewPartyUser.create!(view_party_id: view_party.id, user_id: friend.id)
     end
-    require "pry"; binding.pry
+    redirect_to dashboard_path
   end
 
   private
 
   def view_party_params
-    params.require(:view_party).permit('movie_id', 'duration', 'date(1i)', 'date(2i)', 'date(3i)', 'time(4i)', 'time(5i)', 'friends'=>[] )
+    params.require(:view_party).permit('movie_title', 'movie_id', 'duration', 'date(1i)', 'date(2i)', 'date(3i)', 'time(4i)', 'time(5i)', 'friends'=>[] )
   end
 
-  def get_event_time()
-    year= view_party_params['date(1i)']
+  def parse_event_time
+    year = view_party_params['date(1i)']
     month = view_party_params['date(2i)']
     day = view_party_params['date(3i)']
     hour = view_party_params['time(4i)']
     minute = view_party_params['time(5i)']
-    Time.local(year,month,day,hour,minute)
+    Time.local(year, month, day, hour, minute)
   end
 
-  def get_friends_array()
+  def friends_array
     view_party_params[:friends].filter_map do |id|
-      if id != '0'
-        User.find id.to_i
-      end
+      User.find id.to_i if id != '0'
     end
   end
 end

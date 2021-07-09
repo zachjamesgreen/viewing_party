@@ -5,18 +5,19 @@
     <h1>Create a View Party for <span class="font-semibold"><%= @movie.title %></span></h1>
 
     <%= form_with model: @viewing_party, method: :post, local: true, class: 'space-y-4' do |f| %>
-      <%= f.hidden_field :movie_id, value: @movie.id %>
+      <%= f.hidden_field :movie_id, value: @movie.id, id: 'movie_id' %>
+      <%= f.hidden_field :movie_title, value: @movie.title, id: 'movie_title' %>
       <!-- set to 10 hours maybe-->
       <div class="flex flex-col">
-        <%= f.label :duration %>
+        <%= f.label :duration, for: 'duration_slider' %>
         <%= f.range_field :duration, min: @movie.runtime, max: 600, step: 1, value: @movie.runtime, id: 'duration_slider'  %>
         <p id="duration_slider_output"><%= format_minutes @movie.runtime %></p>
       </div>
-      <div class="flex">
+      <div class="flex" id="date_select">
         <%= f.label :date %>
         <%= f.date_select :date, class: 'flex'%>
       </div>
-      <div class="flex">
+      <div class="flex" id="time_select">
         <%= f.label :time %>
         <%= f.time_select :time, minute_step: 15, ampm: true %>
       </div>
@@ -27,30 +28,6 @@
             <%= f.check_box 'friends', {:multiple => true}, friend.id %>
           </div>
         <% end %>
-        <div class="">
-          <%= f.label 'Friend 1' %>
-          <%= f.check_box 'friends', {:multiple => true}, 100 %>
-        </div>
-        <div class="">
-          <%= f.label 'Friend 2' %>
-          <%= f.check_box 'friends', {:multiple => true}, 200 %>
-        </div>
-        <div class="">
-          <%= f.label 'Friend 3' %>
-          <%= f.check_box 'friends', {:multiple => true}, 300 %>
-        </div>
-        <div class="">
-          <%= f.label 'Friend 4' %>
-          <%= f.check_box 'friends', {:multiple => true}, 400 %>
-        </div>
-        <div class="">
-          <%= f.label 'Friend 5' %>
-          <%= f.check_box 'friends', {:multiple => true}, 500 %>
-        </div>
-        <div class="">
-          <%= f.label 'Friend 6' %>
-          <%= f.check_box 'friends', {:multiple => true}, 600 %>
-        </div>
       </div>
 
 

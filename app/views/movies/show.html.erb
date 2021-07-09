@@ -37,7 +37,7 @@
     
     <div class="absolute top-28 right-80">
       <%= form_with url: '/view_parties/new', method: :get, local: true do |f| %>
-        <%= f.hidden_field :movie, value: @movie.to_json %>
+        <%= f.hidden_field :movie, value: {id: @movie.id, title: @movie.title, runtime: @movie.runtime}.to_json %>
         <%= f.submit 'Create Viewing Party', id: 'view_party_submit',  class: 'text-3xl bg-blue-400 p-4 rounded-xl hover:bg-opacity-70' %>
       <% end %>
 
