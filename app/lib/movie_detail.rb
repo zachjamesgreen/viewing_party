@@ -1,5 +1,5 @@
 class MovieDetail < Movie
-  attr_reader :runtime, :overview, :genres
+  attr_reader :runtime, :overview, :genres, :cast, :reviews
 
   def initialize(info)
     super(info)

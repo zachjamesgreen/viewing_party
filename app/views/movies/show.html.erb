@@ -1,30 +1,34 @@
 <div class="flex bg-gray-200">
   <div class="p-8 w-1/3">
-    <img src="<%= @image_base_url %><%= @movie[:poster_path] %>" alt="">
+    <img src="<%= @movie.image_base_url %>original<%= @movie.poster_path %>" alt="">
   </div>
 
   <div class="p-8 space-y-4 w-2/3">
-    <p class="text-8xl"><%= @movie[:title] %></p>
-    <p>Average Rating: <%= @movie[:vote_average] %></p>
+    <p class="text-8xl"><%= @movie.title %></p>
+    <p>Average Rating: <%= @movie.vote_average %></p>
     <section>
       <p class="text-lg font-semibold">Genres</p>
       <ul class="flex space-x-4">
-        <% @movie[:genres].each do |genre| %>
+        <% @movie.genres.each do |genre| %>
           <li><%= genre[:name] %></li>
         <% end %>
       </ul>
     </section>
-    <p><%= format_minutes @movie[:runtime] %></p>
+    <p><%= format_minutes @movie.runtime %></p>
     <div class="pb-4">
       <p class="text-lg font-bold">Overview</p>
-      <p><%= @movie[:overview] %></p>
+      <p><%= @movie.overview %></p>
     </div>
 
     <p class="text-lg font-bold">Cast</p>
     <div class="grid grid-cols-5 gap-4">
-      <% @movie[:cast].each do |cast| %>
+      <% @movie.cast[0..9].each do |cast| %>
         <div>
-          <img src="<%= @image_base_url %><%= cast[:profile_path] %>" alt="" class="w-32 h-32">
+          <% if cast[:profile_path] %>
+            <img src="<%= @movie.image_base_url %>w342<%= cast[:profile_path] %>" alt="<%= cast[:name] %>" class="w-32 h-32">
+          <% else %>
+            <img src="https://via.placeholder.com/400?text=<%= cast[:name] %>" alt="<%= cast[:name] %>" class="w-32 h-32">
+          <% end %>
           <p><%= cast[:name] %></p>
           <p>(<%= cast[:character] %>)</p>
         </div>
@@ -43,15 +47,14 @@
 </div>
 
 <div class="grid justify-items-center">
-  <p>2 total reviews</p>
-  <div class="flex p-8 space-x-32 justify-around">
-    <div>
-      <p class="underline text-2xl">Author</p>
-      <p class="pl-4">Amazon Prime’s purchase of The Tomorrow War from Paramount was a bold move as the FX-laden film starring Chris Pratt reportedly cost around $200 million to purchase and follows prior purchases of Paramount films by the streamer. Pratt stars as an ex-soldier named Dan Forester who has just been turned down for a research job he has been seeking and must remain teaching science to less than enthusiastic students. While watching a Soccer match with his wife, daughter, and friends, the world is stunned when a group of armed individuals appear in a flash of light and tell the televised audience that they have come from thirty years in the future and are seeking help to save humanity. It is soon learned that an Alien threat they call the White Spikes suddenly appeared and has humanity on the verge of extinction. The nations of the world send forces into the future to help fight the war but with a very high casualty rate; a worldwide draft is soon instituted to replenish the numbers. Dan is eventually drafted and told he has 24 hours to get things in order before he is deployed for seven days at which time he will be returned. Dan contemplates running and seeks out his estranged father (J.K. Simmons); who has a deep disdain for governments and conducts himself in a shady fashion to the point where Dan will not let him anywhere near his daughter. Dan eventually deploys and finds a nightmare version of the future where cities are in ruin and the deadly and very tough enemy is everywhere. As the tension mounts; Dan must team up with the leader of the resistance to develop a way to fight the aliens and save humanity before it is too late. The film features some good FX and action and while there were many times I questioned why a different course of action was not attempted; the film eventually attempts to address many questions later in the film. While the final act may seem overblown and too convenient; the film works as an enjoyable and action-filled escape as long as you are willing to just go along with the ride and not ask too many questions along the way. While there are elements of prior Science Fiction and Horror films evident; the cast and premise work well and the movie is a step above most offerings that are sold to streaming services and is well worth a watch. 3.5 stars out of 5</p>
-    </div>
-    <div>
-      <p class="underline text-2xl">Author</p>
-      <p class="pl-4">Amazon Prime’s purchase of The Tomorrow War from Paramount was a bold move as the FX-laden film starring Chris Pratt reportedly cost around $200 million to purchase and follows prior purchases of Paramount films by the streamer. Pratt stars as an ex-soldier named Dan Forester who has just been turned down for a research job he has been seeking and must remain teaching science to less than enthusiastic students. While watching a Soccer match with his wife, daughter, and friends, the world is stunned when a group of armed individuals appear in a flash of light and tell the televised audience that they have come from thirty years in the future and are seeking help to save humanity. It is soon learned that an Alien threat they call the White Spikes suddenly appeared and has humanity on the verge of extinction. The nations of the world send forces into the future to help fight the war but with a very high casualty rate; a worldwide draft is soon instituted to replenish the numbers. Dan is eventually drafted and told he has 24 hours to get things in order before he is deployed for seven days at which time he will be returned. Dan contemplates running and seeks out his estranged father (J.K. Simmons); who has a deep disdain for governments and conducts himself in a shady fashion to the point where Dan will not let him anywhere near his daughter. Dan eventually deploys and finds a nightmare version of the future where cities are in ruin and the deadly and very tough enemy is everywhere. As the tension mounts; Dan must team up with the leader of the resistance to develop a way to fight the aliens and save humanity before it is too late. The film features some good FX and action and while there were many times I questioned why a different course of action was not attempted; the film eventually attempts to address many questions later in the film. While the final act may seem overblown and too convenient; the film works as an enjoyable and action-filled escape as long as you are willing to just go along with the ride and not ask too many questions along the way. While there are elements of prior Science Fiction and Horror films evident; the cast and premise work well and the movie is a step above most offerings that are sold to streaming services and is well worth a watch. 3.5 stars out of 5</p>
-    </div>
+  <p><%= @movie.reviews.size %> total reviews</p>
+  <div class="grid grid-cols-2 p-8 justify-around">
+    <% @movie.reviews.each do |review| %>
+      <div class="p-4">
+        <p class="underline text-2xl"><%= review[:author] %></p>
+        <p class="pl-4"><%= review[:content] %></p>
+      </div>
+    <% end %>
+
   </div>
 </div>
