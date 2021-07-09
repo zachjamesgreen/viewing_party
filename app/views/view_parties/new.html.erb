@@ -6,7 +6,7 @@
 
     <%= form_with model: @viewing_party, method: :post, local: true, class: 'space-y-4' do |f| %>
       <%= f.hidden_field :movie_id, value: @movie.id, id: 'movie_id' %>
-      <%= f.hidden_field :movie_title, value: @movie.title, id: 'movie_title' %>
+      <%#= f.hidden_field :movie_title, value: @movie.title, id: 'movie_title' %>
       <!-- set to 10 hours maybe-->
       <div class="flex flex-col">
         <%= f.label :duration, for: 'duration_slider' %>

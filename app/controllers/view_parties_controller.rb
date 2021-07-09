@@ -5,11 +5,15 @@ class ViewPartiesController < ApplicationController
   end
 
   def create
+    movie_id = view_party_params[:movie_id]
+    duration = view_party_params[:duration].to_i
+    movie = TMDBService.movie(movie_id)
+    duration = movie.runtime if movie.runtime > duration
     view_party = ViewParty.create!(
-      user_id: current_user.id, movie_id: view_party_params[:movie_id],
-      event_time: parse_event_time, duration: view_party_params[:duration], movie_title: view_party_params[:movie_title]
+      user_id: current_user.id, movie_id: movie.id,
+      event_time: parse_event_time, duration: duration, movie_title: movie.title
     )
-    friends_array.each do |friend|
+    friends_array&.each do |friend|
       ViewPartyUser.create!(view_party_id: view_party.id, user_id: friend.id)
     end
     redirect_to dashboard_path
@@ -36,7 +40,7 @@ class ViewPartiesController < ApplicationController
   end
 
   def friends_array
-    view_party_params[:friends].filter_map do |id|
+    view_party_params[:friends]&.filter_map do |id|
       User.find id.to_i if id != '0'
     end
   end

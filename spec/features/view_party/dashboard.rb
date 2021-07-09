@@ -111,5 +111,9 @@ RSpec.describe 'View Party on Dashboard', :vcr do
 
     end
 
+    it 'cant create a view party if duration < movie runtime' do
+    end
+
+
   end
 end

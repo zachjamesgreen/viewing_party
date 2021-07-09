@@ -3,7 +3,7 @@ class MovieDetail < Movie
 
   def initialize(info)
     super(info)
-    @runtime = info[:runtime]
+    @runtime = info[:runtime].to_i
     @overview = info[:overview]
     @genres = info[:genres]
     @cast = info[:credits] ? info[:credits][:cast] : info[:cast]
