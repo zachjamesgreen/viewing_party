@@ -9,6 +9,5 @@ RSpec.describe TMDBService do
       expect(search.length).to eq(20)
       expect(search.last.title).to eq('Fast Track: No Limits')
     end
-
   end
 end
