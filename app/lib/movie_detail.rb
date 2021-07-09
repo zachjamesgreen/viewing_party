@@ -6,11 +6,7 @@ class MovieDetail < Movie
     @runtime = info[:runtime]
     @overview = info[:overview]
     @genres = info[:genres]
-    @cast = if info[:credits]
-              info[:credits][:cast]
-            else
-              info[:cast]
-            end
+    @cast = info[:credits] ? info[:credits][:cast] : info[:cast]
     @reviews = if info[:reviews].is_a?(Array)
                  info[:reviews]
                elsif !info[:reviews].nil?

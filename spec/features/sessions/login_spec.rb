@@ -54,7 +54,6 @@ RSpec.describe 'Login page' do
     # Bad Password
     visit login_path
     expect(page).to have_current_path('/login')
-    p page.html
 
     fill_in :username, with: user_info[:username]
     fill_in :password, with: 'exam'

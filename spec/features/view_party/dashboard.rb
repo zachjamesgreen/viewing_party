@@ -49,7 +49,29 @@ RSpec.describe 'View Party on Dashboard', :vcr do
     end
   end
 
-  context 'can create a view party' do
+  context 'view party form flow' do
+    it 'has view party form' do
+      login
+      visit '/movies/508934'
+      click_on 'Create Viewing Party'
+      expect(page).to have_current_path(new_view_party_path, ignore_query: true)
+
+      within 'form' do
+        expect(page).to have_field 'Duration'
+        find('#movie_id', visible: false).value
+        find('#movie_title', visible: false).value
+        find("input[type=range]")
+        within '#date_select' do
+          expect(page).to have_content('Date')
+          expect(find_all('select').size).to eq 3
+        end
+        within '#time_select' do
+          expect(page).to have_content('Time')
+          expect(find_all('select').size).to eq 2
+        end
+      end
+    end
+
     it 'should create a view party' do
       duration = 0
       movie_id = ''
