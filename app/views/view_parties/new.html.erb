@@ -5,6 +5,7 @@
     <h1>Create a View Party for <span class="font-semibold"><%= @movie.title %></span></h1>
 
     <%= form_with model: @viewing_party, method: :post, local: true, class: 'space-y-4' do |f| %>
+      <%= f.hidden_field :movie_id, value: @movie.id %>
       <!-- set to 10 hours maybe-->
       <div class="flex flex-col">
         <%= f.label :duration %>
@@ -20,29 +21,35 @@
         <%= f.time_select :time, minute_step: 15, ampm: true %>
       </div>
       <div class="grid grid-cols-3 gap-4">
+        <% current_user.friends.each do |friend| %>
+          <div>
+            <%= f.label friend.username %>
+            <%= f.check_box 'friends', {:multiple => true}, friend.id %>
+          </div>
+        <% end %>
         <div class="">
           <%= f.label 'Friend 1' %>
-          <%= f.check_box 'friends', {:multiple => true}, 1 %>
+          <%= f.check_box 'friends', {:multiple => true}, 100 %>
         </div>
         <div class="">
           <%= f.label 'Friend 2' %>
-          <%= f.check_box 'friends', {:multiple => true}, 2 %>
+          <%= f.check_box 'friends', {:multiple => true}, 200 %>
         </div>
         <div class="">
           <%= f.label 'Friend 3' %>
-          <%= f.check_box 'friends', {:multiple => true}, 3 %>
+          <%= f.check_box 'friends', {:multiple => true}, 300 %>
         </div>
         <div class="">
           <%= f.label 'Friend 4' %>
-          <%= f.check_box 'friends', {:multiple => true}, 4 %>
+          <%= f.check_box 'friends', {:multiple => true}, 400 %>
         </div>
         <div class="">
           <%= f.label 'Friend 5' %>
-          <%= f.check_box 'friends', {:multiple => true}, 5 %>
+          <%= f.check_box 'friends', {:multiple => true}, 500 %>
         </div>
         <div class="">
           <%= f.label 'Friend 6' %>
-          <%= f.check_box 'friends', {:multiple => true}, 6 %>
+          <%= f.check_box 'friends', {:multiple => true}, 600 %>
         </div>
       </div>
 
@@ -62,8 +69,8 @@
     })
 
     function format_time(time){
-        var minutes = time % 60
-        var hours = (time - minutes) / 60
+        let minutes = time % 60
+        let hours = (time - minutes) / 60
         return `${hours} hours ${minutes} minutes`
     }
 </script>
