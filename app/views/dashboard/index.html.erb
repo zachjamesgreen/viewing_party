@@ -6,18 +6,18 @@
     <a href="/discover" class="bg-blue-400 hover:bg-opacity-70 rounded p-4">Discover Movies</a>
   </div>
 
-  <!-- Friends Section -->
-  <div class="flex justify-around pb-16">
-    <div id="friends" class="bg-white px-16 rounded-xl border border-black h-full">
-      <h4 class="text-2xl pl-4">Friends</h4>
+  <div class="flex flex-col items-center pb-16">
+    <!-- Friends Section -->
+    <div id="friends" class="flex flex-col bg-white px-16 rounded-xl border border-black h-full items-center">
+      <h4 class="text-3xl pl-4">Friends</h4>
       <!-- Form to add friend -->
       <%= form_with url: add_friend_path, local: true, class: 'pl-4 pt-2' do |f| %>
-      <label for="friend">Add Friend By Email Address</label>
-      <%= f.text_field :email, class: 'border border-black rounded' %>
-      <%= f.submit 'Add Friend' %>
+        <label for="friend">Add Friend By Email Address</label>
+        <%= f.text_field :email, class: 'border border-black rounded' %>
+        <%= f.submit 'Add Friend' %>
       <% end %>
 
-      <ul class="grid grid-cols-4">
+      <ul class="">
         <h4 class="text-2xl pl-4">Your Friends:</h4>
         <% if !@user.friends.empty? %>
           <% @user.friends.each do |friend| %>
@@ -30,72 +30,46 @@
     </div>
 
     <!-- Parties Section -->
-    <div id="parties" class="flex flex-col bg-white px-16 rounded-xl border border-black items-center">
+    <div id="parties" class="flex flex-col px-16 items-center">
       <h3 class="text-3xl underline">Viewing Parties</h3>
 
-      <div class="flex flex-col items-center">
-        <h4 class="text-2xl">Hosting</h4>
-        <ul class="flex space-x-4">
-          <li><a href="#" class="hover:text-blue-400">Movie Title</a></li>
-          <li>Date/Time</li>
-          <li>Im the host</li>
-          <li>
-            <ul>
-              <li>Friend 1</li>
-              <li>Friend 2</li>
-              <li>Friend 3</li>
-            </ul>
-          </li>
-        </ul>
+      <h4 class="text-2xl">Hosting</h4>
 
-        <hr>
+      <div class="grid grid-cols-3 gap-2">
 
-        <ul class="flex space-x-4">
-          <li><a href="#" class="hover:text-blue-400">Movie Title</a></li>
-          <li>Date/Time</li>
-          <li>Im the host</li>
-          <li>
-            <ul>
-              <li>Friend 1</li>
-              <li>Friend 2</li>
-              <li>Friend 3</li>
-            </ul>
-          </li>
-        </ul>
+        <% @my_view_parties.each do |vp| %>
+          <div class="flex flex-col items-center p-4">
+            <p><a href="#" class="hover:text-blue-400"><%= vp.movie_name %></a></p>
+            <p><%= vp.event_time %></p>
+            <div class="grid grid-cols-3 gap-2 justify-items-center">
+              <% vp.view_party_users.users.each do |user| %>
+                    <p><%= user.username %></p>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+
       </div>
 
-      <div class="flex flex-col items-center">
-        <h4 class="text-2xl">Attending</h4>
-        <ul class="flex space-x-4">
-          <li><a href="#" class="hover:text-blue-400">Movie Title</a></li>
-          <li>Date/Time</li>
-          <li>Who is hosting</li>
-          <li>
-            <ul>
-              <li class="font-bold">Users name is bold</li>
-              <li>Friend 2</li>
-              <li>Friend 3</li>
-            </ul>
-          </li>
-        </ul>
 
-        <hr>
+      <h1 class="text-2xl">Invited</h1>
+      <div class="grid grid-cols-3 gap-2">
 
-        <ul class="flex grid-col-4 space-x-4">
-          <li><a href="#" class="hover:text-blue-400">Movie Title</a></li>
-          <li>Date/Time</li>
-          <li>Who is hosting</li>
-          <li>
-            <ul>
-              <li class="font-bold">Users name is bold</li>
-              <li>Friend 2</li>
-              <li>Friend 3</li>
-            </ul>
-          </li>
-        </ul>
+        <% @attending_view_parties.each do |vp| %>
+          <div class="flex flex-col items-center p-4">
+            <p><a href="#" class="hover:text-blue-400"><%= vp.movie_name %></a></p>
+            <p><%= vp.event_time %></p>
+            <div class="grid grid-cols-3 gap-2 justify-items-center">
+              <% vp.view_party_users.users.each do |user| %>
+                <p><%= user.username %></p>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+
       </div>
 
-    </div>
+
 
   </div>
 </div>
