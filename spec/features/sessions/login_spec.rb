@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe 'Login page' do
+  before(:each) do
+    User.destroy_all
+  end
   context 'has content' do
     it 'has form' do
       visit '/login'
