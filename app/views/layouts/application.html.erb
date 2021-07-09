@@ -14,7 +14,7 @@
   <% flash.each do |name, msg| %>
     <%= content_tag :div, msg, class: name %>
   <% end %>
-    <main class="bg-gray-200">
+    <main class="">
       <%= yield %>
   </main>
   <footer class="flex sticky left-0" style="top: 90vh">

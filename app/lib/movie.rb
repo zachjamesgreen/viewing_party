@@ -8,4 +8,8 @@ class Movie
     @title = info[:title]
     @image_base_url = 'https://image.tmdb.org/t/p/'
   end
+
+  def self.parse(movie)
+    Movie.new(JSON.parse(movie, symbolize_names: true))
+  end
 end
