@@ -5,16 +5,9 @@ class ViewPartiesController < ApplicationController
   end
 
   def create
-    event_time = parse_event_time
-    movie_id = view_party_params[:movie_id]
-    movie_title = view_party_params[:movie_title]
-    duration = view_party_params[:duration]
     view_party = ViewParty.create!(
-      user_id: current_user.id,
-      movie_id: movie_id,
-      event_time: event_time,
-      duration: duration,
-      movie_title: movie_title
+      user_id: current_user.id, movie_id: view_party_params[:movie_id],
+      event_time: parse_event_time, duration: view_party_params[:duration], movie_title: view_party_params[:movie_title]
     )
     friends_array.each do |friend|
       ViewPartyUser.create!(view_party_id: view_party.id, user_id: friend.id)
@@ -25,7 +18,12 @@ class ViewPartiesController < ApplicationController
   private
 
   def view_party_params
-    params.require(:view_party).permit('movie_title', 'movie_id', 'duration', 'date(1i)', 'date(2i)', 'date(3i)', 'time(4i)', 'time(5i)', 'friends'=>[] )
+    params.require(:view_party).permit(
+      'movie_title',
+      'movie_id', 'duration', 'date(1i)',
+      'date(2i)', 'date(3i)', 'time(4i)',
+      'time(5i)', 'friends' => []
+    )
   end
 
   def parse_event_time

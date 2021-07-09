@@ -1,5 +1,4 @@
 class MoviesController < ApplicationController
-
   def discover
     # use discover endpoint only 4
     @movies = TMDBService.discover[0..3]
@@ -19,6 +18,6 @@ class MoviesController < ApplicationController
   def search; end
 
   def show
-    @movie = TMDBService.movie(508943)
+    @movie = TMDBService.movie(508_943)
   end
 end
