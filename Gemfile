@@ -40,7 +40,6 @@ group :test do
   gem 'capybara'
   gem 'launchy'
   gem 'simplecov'
-  gem 'simplecov'
   gem 'webmock'
   gem 'vcr'
   gem 'database_cleaner-active_record'

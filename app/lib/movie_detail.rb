@@ -7,11 +7,7 @@ class MovieDetail < Movie
     @overview = info[:overview]
     @genres = info[:genres]
     @cast = info[:credits] ? info[:credits][:cast] : info[:cast]
-    @reviews = if info[:reviews].is_a?(Array)
-                 info[:reviews]
-               elsif !info[:reviews].nil?
-                 info[:reviews][:results]
-               end
+    @reviews = info[:reviews] && info[:reviews][:results] ? info[:reviews][:results] : info[:reviews]
   end
 
   def self.parse(movie)

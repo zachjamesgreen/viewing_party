@@ -31,7 +31,7 @@ RSpec.describe 'View Party on Dashboard', :vcr do
       expect(@user.view_parties.size).to eq 6
       @user.view_parties.each do |view_party|
         expect(page).to have_content(view_party.movie_title)
-        expect(page).to have_content(view_party.event_time.to_formatted_s(:short))
+        expect(page).to have_content(view_party.event_time.getlocal.strftime('%d %b %I:%M %P'))
       end
     end
 
@@ -45,7 +45,7 @@ RSpec.describe 'View Party on Dashboard', :vcr do
       login
 
       expect(page).to have_content(view_party.movie_title)
-      expect(page).to have_content(view_party.event_time.to_formatted_s(:short))
+      expect(page).to have_content(view_party.event_time.getlocal.strftime('%d %b %I:%M %P'))
     end
   end
 
@@ -59,7 +59,6 @@ RSpec.describe 'View Party on Dashboard', :vcr do
       within 'form' do
         expect(page).to have_field 'Duration'
         find('#movie_id', visible: false).value
-        find('#movie_title', visible: false).value
         find("input[type=range]")
         within '#date_select' do
           expect(page).to have_content('Date')
@@ -88,7 +87,6 @@ RSpec.describe 'View Party on Dashboard', :vcr do
         expect(page).to have_field 'Duration'
         duration = find("input[type=range]").value
         movie_id = find('#movie_id', visible: false).value
-        movie_title = find('#movie_title', visible: false).value
         within '#date_select' do
           expect(page).to have_content('Date')
           expect(find_all('select').size).to eq 3
@@ -103,7 +101,7 @@ RSpec.describe 'View Party on Dashboard', :vcr do
         click_on 'commit'
       end
       expect(page).to have_current_path(dashboard_path)
-      view_party = ViewParty.where(movie_id: movie_id, movie_title: movie_title, duration: duration, user_id: @user.id).first
+      view_party = ViewParty.where(movie_id: movie_id, duration: duration, user_id: @user.id).first
       expect(view_party).to be_instance_of(ViewParty)
       vp_user = ViewPartyUser.where(view_party_id: view_party.id, user_id: u1.id).first.user
       expect(vp_user).to eq u1

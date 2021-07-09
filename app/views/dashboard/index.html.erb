@@ -40,7 +40,7 @@
         <% @my_view_parties.each do |vp| %>
           <div class="flex flex-col items-center p-4">
             <p><%= link_to vp.movie_title, movie_path(vp.movie_id) %></p>
-            <p><%= vp.event_time.to_formatted_s(:short) %></p>
+            <p><%= vp.event_time.getlocal.strftime('%d %b %I:%M %P') %></p>
             <div class="grid grid-cols-3 gap-2 justify-items-center">
               <% vp.view_party_users.users.each do |user| %>
                     <p><%= user.username %></p>
@@ -59,7 +59,7 @@
           <div class="flex flex-col items-center p-4">
             <p><%= link_to vp.movie_title, movie_path(vp.movie_id) %></p>
             <p>Host: <%= vp.user.username %></p>
-            <p><%= vp.event_time.to_formatted_s(:short) %></p>
+            <p><%= vp.event_time.getlocal.strftime('%d %b %I:%M %P') %></p>
             <div class="grid grid-cols-3 gap-2 justify-items-center">
               <% vp.view_party_users.users.each do |user| %>
                 <p class="<%= current_user == user ? 'font-semibold' : '' %>"><%= user.username %></p>
