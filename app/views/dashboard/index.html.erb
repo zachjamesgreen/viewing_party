@@ -62,7 +62,7 @@
             <p><%= vp.event_time.to_formatted_s(:short) %></p>
             <div class="grid grid-cols-3 gap-2 justify-items-center">
               <% vp.view_party_users.users.each do |user| %>
-                <p><%= user.username %></p>
+                <p class="<%= current_user == user ? 'font-semibold' : '' %>"><%= user.username %></p>
               <% end %>
             </div>
           </div>
