@@ -58,6 +58,11 @@ RSpec.describe 'Movies', :vcr do
       expect(page).to have_current_path('/movies')
       expect(page).to have_field 'search'
     end
+
+    it 'lists the top 40 movies by default' do
+      visit movies_path
+      save_and_open_page
+    end
   end
 
   context 'movie details page' do
