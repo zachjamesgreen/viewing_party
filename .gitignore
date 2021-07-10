@@ -29,3 +29,5 @@ yarn-debug.log*
 config/database.yml
 
 coverage
+
+vcr_cassettes/*
