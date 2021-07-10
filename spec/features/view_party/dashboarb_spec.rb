@@ -52,7 +52,7 @@ RSpec.describe 'View Party on Dashboard', :vcr do
   context 'view party form flow' do
     it 'has view party form' do
       login
-      visit '/movies/508934'
+      visit '/movies/508943'
       click_on 'Create Viewing Party'
       expect(page).to have_current_path(new_view_party_path, ignore_query: true)
 
@@ -80,7 +80,7 @@ RSpec.describe 'View Party on Dashboard', :vcr do
       u3 = create(:user)
       @user.friends << [u1, u2, u3]
       login
-      visit '/movies/508934'
+      visit '/movies/508943'
       click_on 'Create Viewing Party'
       expect(page).to have_current_path(new_view_party_path, ignore_query: true)
       within 'form' do

@@ -16,6 +16,6 @@ class MoviesController < ApplicationController
   def search; end
 
   def show
-    @movie = TMDBService.movie(508_943)
+    @movie = TMDBService.movie(params[:id])
   end
 end
