@@ -67,7 +67,6 @@ RSpec.describe 'Movies', :vcr do
 
   context 'movie details page' do
     it 'has link to create viewing party' do
-      # TODO authenticate user
       movie = TMDBService.movie(508943)
       visit '/movies/508943'
 
@@ -92,6 +91,13 @@ RSpec.describe 'Movies', :vcr do
         visible = find("input[type=submit][value='Create Viewing Party']").visible?
         expect(visible).to eq true
       end
+    end
+  end
+
+  context '404 page' do
+    it 'has 404 page' do
+      visit '/movies/not_found'
+      expect(page).to have_content('PAGE NOT FOUND')
     end
   end
 end

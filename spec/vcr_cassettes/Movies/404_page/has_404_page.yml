@@ -1,0 +1,61 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.themoviedb.org/3/movie/not_found?api_key=<API_KEY>&append_to_response=reviews,credits
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.4.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - application/json;charset=utf-8
+      Content-Length:
+      - '100'
+      Connection:
+      - keep-alive
+      Date:
+      - Sat, 10 Jul 2021 02:13:43 GMT
+      Server:
+      - openresty
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, HEAD, POST, PUT, DELETE, OPTIONS
+      Access-Control-Expose-Headers:
+      - ETag, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, Retry-After,
+        Content-Length, Content-Range
+      Cache-Control:
+      - public, max-age=28800
+      X-Memc:
+      - MISS
+      X-Memc-Key:
+      - b23bf832d0ca02b841ddf1ca4a00bb246277554c
+      X-Memc-Age:
+      - '0'
+      X-Memc-Expires:
+      - '15027'
+      X-Cache:
+      - Error from cloudfront
+      Via:
+      - 1.1 4b2d2d4c49521bf403522140b78283a1.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - DEN50-C2
+      X-Amz-Cf-Id:
+      - zK969uZaXgtnv_BR3d9ZTckqZQ8mtG_qzC_OpIzEmHTssBhWr9dAig==
+    body:
+      encoding: UTF-8
+      string: '{"success":false,"status_code":34,"status_message":"The resource you
+        requested could not be found."}'
+  recorded_at: Sat, 10 Jul 2021 02:13:52 GMT
+recorded_with: VCR 6.0.0
