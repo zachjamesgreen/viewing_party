@@ -1,4 +1,5 @@
 class ViewPartiesController < ApplicationController
+  before_action :require_login
   def new
     @movie = MovieDetail.parse(params[:movie])
     @viewing_party = ViewParty.new
