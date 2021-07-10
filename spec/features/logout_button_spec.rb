@@ -28,4 +28,13 @@ RSpec.describe "Logout Button", type: :feature do
     visit discover_path
     expect(page).to have_link("Log Out")
   end
+
+  it 'show appropiate button on welcome page' do
+    visit root_path
+    expect(page).to have_link("Login")
+    login
+    visit root_path
+    expect(page).to have_link("Log Out")
+    expect(page).to have_no_link("Login")
+  end
 end
