@@ -17,7 +17,7 @@ RSpec.describe 'Movies', :vcr do
   context 'discover page' do
     it 'should not allow unauth user' do 
       visit discover_path
-      click_button('Log Out')
+      click_on('Log Out')
       visit discover_path
       expect(page).to have_current_path '/login'
       expect(page).to have_content('You must be logged in to access this section')
