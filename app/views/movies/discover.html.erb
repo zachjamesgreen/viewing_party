@@ -5,20 +5,20 @@
   </div>
 
   <div class="flex justify-center m-8">
-    <a href="/movies?top_rated=t">Top Rated Movies</a>
+    <p><%= link_to "See Top Rated Movies", top_rated_path(page: 1) %>
   </div>
 
   <div class="flex flex-1 justify-center h-1/2 space-x-8">
     <% @movies.each do |movie| %>
-      <a href="<%= movie_path(movie.id) %>">
-        <div class=" movie px-8 pt-8 pb-4 bg-blue-400 bg-opacity-70 rounded-xl" id="<%= movie.id %>">
-          <img src="<%= movie.image_base_url %>w342<%= movie.poster_path %>" alt="" id="<%= movie.id %>-image">
-          <div class="">
-            <p class="text-2xl"><%= movie.title %></p>
-            <p class="text-md">Average Rating: <%= movie.vote_average %></p>
-          </div>
+    <a href="<%= movie_path(movie.id) %>">
+      <div class=" movie px-8 pt-8 pb-4 bg-blue-400 bg-opacity-70 rounded-xl" id="<%= movie.id %>">
+        <img src="<%= movie.image_base_url %>w342<%= movie.poster_path %>" alt="" id="<%= movie.id %>-image">
+        <div class="">
+          <p class="text-2xl"><%= link_to movie.title, movie_path(movie.id) %></p>
+          <p class="text-md">Average Rating: <%= movie.vote_average %></p>
         </div>
-      </a>
+      </div>
+    </a>
     <% end %>
   </div>
 </div>

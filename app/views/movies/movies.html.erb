@@ -10,7 +10,7 @@
       <div class="px-8 pt-8 pb-4 bg-blue-400 bg-opacity-70 rounded-xl">
         <img src="<%= movie.image_base_url %>w300<%= movie.poster_path %>" alt="">
         <div class="">
-          <p class="text-2xl"><%= movie.title %></p>
+          <p class="text-2xl"><%= link_to movie.title, movie_path(movie.id) %></p>
           <p class="text-md">Average Rating: <%= movie.vote_average %></p>
         </div>
       </div>
