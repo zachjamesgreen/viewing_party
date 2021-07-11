@@ -1,0 +1,18 @@
+<div class="bg-gray-200 p-8 justify-center">
+
+  <div class="flex justify-center m-8">
+    <%= render 'layouts/search_form' %>
+  </div>
+
+  <div class="grid grid-cols-4 gap-8 h-1/2">
+    <% @movies.each do |movie| %>
+    <div class="px-8 pt-8 pb-4 bg-blue-400 bg-opacity-70 rounded-xl">
+      <img src="<%= movie.image_base_url %>w300<%= movie.poster_path %>" alt="">
+      <div>
+        <p class="text-2xl"><%= link_to movie.title, movie_path(movie.id) %></p>
+        <p class="text-md">Average Rating: <%= movie.vote_average %></p>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

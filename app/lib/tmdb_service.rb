@@ -10,7 +10,7 @@ class TMDBService
 
   def self.search(query)
     url = 'https://api.themoviedb.org/3/search/movie'
-    res = Faraday.get(url, { api_key: ENV['TMDB_API_KEY'], query: query})
+    res = Faraday.get(url, { api_key: ENV['TMDB_API_KEY'], query: query })
     body = JSON.parse(res.body, symbolize_names: true)
     body[:results].map do |movie|
       Movie.new(movie)
@@ -22,5 +22,14 @@ class TMDBService
     res = Faraday.get(url, { api_key: ENV['TMDB_API_KEY'], append_to_response: 'reviews,credits' })
     body = JSON.parse(res.body, symbolize_names: true)
     MovieDetail.new(body)
+  end
+
+  def self.top_rated(page)
+    url = 'https://api.themoviedb.org/3/movie/top_rated'
+    res = Faraday.get(url, { api_key: ENV['TMDB_API_KEY'], page: page })
+    body = JSON.parse(res.body, symbolize_names: true)
+    body[:results].map do |movie|
+      Movie.new(movie)
+    end
   end
 end
