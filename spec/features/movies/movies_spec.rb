@@ -37,6 +37,19 @@ RSpec.describe 'Movies', :vcr do
       expect(current_path).to eq('/movies')
     end
 
+    it 'has a link to top 40 movies' do
+      visit discover_path
+
+      expect(page).to have_link 'Top 40 Movies By Rating'
+    end
+
+    it 'clicking the link travels to top rated page' do
+      visit discover_path
+      click_link 'Top 40 Movies By Rating'
+
+      expect(current_path).to eq('/movies/top_rated')
+    end
+
     it 'has all info' do
       visit discover_path
       movies = discover_test

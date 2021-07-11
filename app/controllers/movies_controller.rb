@@ -1,7 +1,6 @@
 class MoviesController < ApplicationController
   before_action :require_login
   def discover
-    # use discover endpoint only 4
     @movies = TMDBService.discover[0..3]
   end
 
@@ -9,7 +8,7 @@ class MoviesController < ApplicationController
     if params[:search] && !(params[:search] == '')
       @movies = TMDBService.search(params[:search])
     else
-      @movies = TMDBService.discover[0..39]
+      @movies = TMDBService.discover
     end
   end
 
@@ -17,5 +16,9 @@ class MoviesController < ApplicationController
 
   def show
     @movie = TMDBService.movie(params[:id])
+  end
+
+  def top_rated
+    @movies = TMDBService.top_rated(1) + TMDBService.top_rated(2)
   end
 end
