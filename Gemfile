@@ -24,6 +24,9 @@ group :development, :test do
   gem 'pry'
   gem 'travis'
   gem 'shoulda-matchers'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'awesome_print'
 end
 
 group :development do
@@ -40,6 +43,7 @@ group :test do
   gem 'simplecov'
   gem 'webmock'
   gem 'vcr'
+  gem 'database_cleaner-active_record'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

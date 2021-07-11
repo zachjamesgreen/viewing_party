@@ -1,0 +1,53 @@
+<div class="w-screen h-full">
+
+  <div class="items-center h-1/2 w-1/2 bg-gray-200 rounded-3xl p-32" style="margin-top: 8%; margin-left: 25%;">
+
+    <h1>Create a View Party for <span class="font-semibold"><%= @movie.title %></span></h1>
+
+    <%= form_with model: @viewing_party, method: :post, local: true, class: 'space-y-4' do |f| %>
+      <%= f.hidden_field :movie_id, value: @movie.id, id: 'movie_id' %>
+      <%#= f.hidden_field :movie_title, value: @movie.title, id: 'movie_title' %>
+      <!-- set to 10 hours maybe-->
+      <div class="flex flex-col">
+        <%= f.label :duration, for: 'duration_slider' %>
+        <%= f.range_field :duration, min: @movie.runtime, max: 600, step: 1, value: @movie.runtime, id: 'duration_slider'  %>
+        <p id="duration_slider_output"><%= format_minutes @movie.runtime %></p>
+      </div>
+      <div class="flex" id="date_select">
+        <%= f.label :date %>
+        <%= f.date_select :date, class: 'flex'%>
+      </div>
+      <div class="flex" id="time_select">
+        <%= f.label :time %>
+        <%= f.time_select :time, minute_step: 15, ampm: true %>
+      </div>
+      <div class="grid grid-cols-3 gap-4">
+        <% current_user.friends.each do |friend| %>
+          <div>
+            <%= f.label friend.username %>
+            <%= f.check_box 'friends', {:multiple => true}, friend.id %>
+          </div>
+        <% end %>
+      </div>
+
+
+      <%= f.submit 'Submit', class: 'bg-blue-400 px-4 py-2 rounded hover:bg-opacity-70' %>
+    <% end %>
+
+  </div>
+
+</div>
+
+<script>
+    slider = document.getElementById('duration_slider')
+    slider_output = document.getElementById('duration_slider_output')
+    slider.addEventListener('input', function(e){
+        slider_output.innerText = format_time(e.target.value)
+    })
+
+    function format_time(time){
+        let minutes = time % 60
+        let hours = (time - minutes) / 60
+        return `${hours} hours ${minutes} minutes`
+    }
+</script>

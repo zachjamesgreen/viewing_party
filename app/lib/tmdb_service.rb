@@ -7,4 +7,11 @@ class TMDBService
       Movie.new(movie)
     end
   end
+
+  def self.movie(id)
+    url = "https://api.themoviedb.org/3/movie/#{id}"
+    res = Faraday.get(url, { api_key: ENV['TMDB_API_KEY'], append_to_response: 'reviews,credits' })
+    body = JSON.parse(res.body, symbolize_names: true)
+    MovieDetail.new(body)
+  end
 end

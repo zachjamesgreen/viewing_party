@@ -6,13 +6,15 @@
 
   <div class="grid grid-cols-4 gap-8 h-1/2">
     <% 40.times do %>
+
       <div class="px-8 pt-8 pb-4 bg-blue-400 bg-opacity-70 rounded-xl">
-        <img src="<%= @image_base_url %><%= @movie[:poster_path] %>" alt="">
+        <img src="<%= @image_base_url %>original<%= @movie[:poster_path] %>" alt="">
         <div class="">
           <p class="text-2xl"><%= @movie[:title] %></p>
           <p class="text-md">Average Rating: <%= @movie[:vote_average] %></p>
         </div>
       </div>
+
     <% end %>
   </div>
 </div>

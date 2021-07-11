@@ -16,5 +16,15 @@ RSpec.describe ApplicationHelper do
       formatted_time = helper.format_minutes(120)
       expect(formatted_time).to eq '2 hours'
     end
+
+    it 'returns the formated time with 1 hour' do
+      formatted_time = helper.format_minutes(60)
+      expect(formatted_time).to eq '1 hour'
+    end
+
+    it 'returns the formated time with 1 minute' do
+      formatted_time = helper.format_minutes(1)
+      expect(formatted_time).to eq '1 minute'
+    end
   end
 end
