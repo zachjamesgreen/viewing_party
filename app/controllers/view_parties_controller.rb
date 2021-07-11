@@ -36,7 +36,7 @@ class ViewPartiesController < ApplicationController
     day = view_party_params['date(3i)']
     hour = view_party_params['time(4i)']
     minute = view_party_params['time(5i)']
-    Time.local(year, month, day, hour, minute)
+    Time.zone.local(year, month, day, hour, minute)
   end
 
   def friends_array

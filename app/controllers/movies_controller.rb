@@ -5,11 +5,11 @@ class MoviesController < ApplicationController
   end
 
   def movies
-    if params[:search] && !(params[:search] == '')
-      @movies = TMDBService.search(params[:search])
-    else
-      @movies = TMDBService.discover
-    end
+    @movies = if params[:search] && params[:search] != ''
+                TMDBService.search(params[:search])
+              else
+                TMDBService.discover
+              end
   end
 
   def search; end
