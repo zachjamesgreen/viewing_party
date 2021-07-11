@@ -23,4 +23,13 @@ class TMDBService
     body = JSON.parse(res.body, symbolize_names: true)
     MovieDetail.new(body)
   end
+
+  def self.top_rated(page)
+    url = 'https://api.themoviedb.org/3/movie/top_rated'
+    res = Faraday.get(url, { api_key: ENV['TMDB_API_KEY'], page: page })
+    body = JSON.parse(res.body, symbolize_names: true)
+    body[:results].map do |movie|
+      Movie.new(movie)
+    end
+  end
 end
