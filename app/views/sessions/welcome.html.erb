@@ -7,9 +7,14 @@
     </div>
 
     <div class="flex mt-8 space-x-4">
-      <a href="/login" class="bg-blue-400 rounded px-4 py-2 hover:bg-transparent transition">Login</a>
+      <% if current_user %>
+        <%= link_to 'Dashboard', dashboard_path, class: 'bg-blue-400 rounded px-4 py-2 hover:bg-transparent transition' %>
+      <% else %>
+        <%= link_to 'Login', login_path, class: 'bg-blue-400 rounded px-4 py-2 hover:bg-transparent transition' %>
+      <% end %>
       <a href="/register" class="rounded px-4 py-2 hover:bg-blue-400 transition">Register</a>
     </div>
+    
 
   </div>
 

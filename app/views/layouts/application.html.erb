@@ -6,16 +6,23 @@
   <%= csrf_meta_tags %>
 
   <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
   <%= javascript_pack_tag 'application' %>
   <%= stylesheet_pack_tag    'application', media: 'all' %>
 </head>
 
 <body>
+
   <% flash.each do |name, msg| %>
     <%= content_tag :div, msg, class: name %>
   <% end %>
-    <main class="">
-      <%= yield %>
+  <main class="">
+    <% if current_user %>
+      <div class="absolute p-8 top-4 right-4">
+        <%= render 'shared/logout' %>
+      </div>
+    <% end %>
+    <%= yield %>
   </main>
   <footer class="flex sticky left-0" style="top: 90vh">
     <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg" alt="The MovieDB Logo" width="75px" style="margin:10px">

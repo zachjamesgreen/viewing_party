@@ -13,7 +13,6 @@ deploy:
   - provider: heroku
     app: viewingpartyzjg
     api_key: $HEROKU_API_KEY
-    run: rails db:migrate
     on:
       branch: main
 

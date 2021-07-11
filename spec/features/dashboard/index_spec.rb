@@ -107,9 +107,9 @@ RSpec.describe 'Dashboard Index' do
       visit dashboard_path
       ViewPartyUser.all.each do |vpu|
         expect(page).to have_content(vpu.user.username)
-        expect(find_all('p', text: "Host: #{u1.username}").size).to eq 3
-        expect(find_all('p', text: @user.username).size).to eq 3
       end
+      expect(find_all('p', text: "Host: #{u1.username}").size).to eq 3
+      expect(find_all('p', text: @user.username).size).to eq 3
       ViewParty.all do |vp|
         expect(page).to have_content(vp.event_time.to_formatted_s(:long))
       end
