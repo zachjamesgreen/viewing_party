@@ -6,13 +6,11 @@ class MoviesController < ApplicationController
 
   def movies
     @movies = if params[:search] && params[:search] != ''
-                TMDBService.search(params[:search])
+                MoviesFacade.search(params[:search])
               else
                 MoviesFacade.discover
               end
   end
-
-  def search; end
 
   def show
     @movie = TMDBService.movie(params[:id])
@@ -23,6 +21,6 @@ class MoviesController < ApplicationController
   end
 
   def top_rated
-    @movies = TMDBService.top_rated(1) + TMDBService.top_rated(2)
+    @movies = MoviesFacade.top_rated(1) + MoviesFacade.top_rated(2)
   end
 end
