@@ -1,12 +1,13 @@
 class TMDBService
   class << self
-    def discover
+    def discover(page)
       url = 'https://api.themoviedb.org/3/discover/movie'
-      res = Faraday.get(url, { api_key: ENV['TMDB_API_KEY'] })
+      res = Faraday.get(url, { api_key: ENV['TMDB_API_KEY'], page: page })
       body = JSON.parse(res.body, symbolize_names: true)
-      body[:results].map do |movie|
-        Movie.new(movie)
-      end
+
+      # body[:results].map do |movie|
+      #   Movie.new(movie)
+      # end
     end
 
     def search(query)

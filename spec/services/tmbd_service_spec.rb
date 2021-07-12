@@ -1,6 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe TMDBService do
+  describe '.discover' do
+    it 'returns a json response' do
+      VCR.use_cassette('moviedb_discover', :record => :new_episodes) do
+        body = TMDBService.discover(1)
+        discover_array = body[:results]
+
+        expect(body).is_a? Hash
+        expect(discover_array).is_a? Array
+        expect(discover_array.length).to eq 20
+        expect(discover_array.first[:genre_ids]).is_a? Array
+        expect(discover_array.first[:title]).is_a? String
+      end
+    end
+  end
+
   describe '.search' do
     it 'searches' do
       VCR.use_cassette('moviedb_search', :record => :new_episodes) do
