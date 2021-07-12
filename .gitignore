@@ -31,3 +31,5 @@ config/database.yml
 coverage
 
 vcr_cassettes/*
+# Ignore master key for decrypting credentials and more.
+/config/master.key
