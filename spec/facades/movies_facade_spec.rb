@@ -68,4 +68,19 @@ RSpec.describe MoviesFacade do
       end
     end
   end
+
+  describe 'find' do
+    it 'finds movie details by id' do
+      VCR.use_cassette('facade_find', :record => :new_episodes) do
+        movie_details = MoviesFacade.find(238)
+
+        expect(movie_details).is_a? MovieDetail
+        expect(movie_details.runtime).is_a? Integer
+        expect(movie_details.overview).is_a? String
+        expect(movie_details.genres).is_a? Array
+        expect(movie_details.cast).is_a? Array
+        expect(movie_details.reviews).is_a? Array
+      end
+    end
+  end
 end

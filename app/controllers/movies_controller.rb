@@ -13,7 +13,7 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @movie = TMDBService.movie(params[:id])
+    @movie = MoviesFacade.find(params[:id])
     if @movie.nil?
       render file: 'public/404.html', status: :not_found
       return

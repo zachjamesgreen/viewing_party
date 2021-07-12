@@ -52,5 +52,17 @@ RSpec.describe TMDBService do
     end
   end
 
-  describe ''
+  describe 'find' do
+    it 'finds a movie' do
+      VCR.use_cassette('tmdb_service_find', :record => :new_episodes) do
+        body = TMDBService.find(238)
+
+        expect(body[:runtime]).is_a? Integer
+        expect(body[:overview]).is_a? String
+        expect(body[:genres]).is_a? Array
+        expect(body[:credits]).is_a? Hash
+        expect(body[:reviews]).is_a? Hash
+      end
+    end
+  end
 end

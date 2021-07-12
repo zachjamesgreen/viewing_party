@@ -12,15 +12,10 @@ class TMDBService
       body = JSON.parse(res.body, symbolize_names: true)
     end
 
-    def movie(id)
+    def find(id)
       url = "https://api.themoviedb.org/3/movie/#{id}"
       res = Faraday.get(url, { api_key: ENV['TMDB_API_KEY'], append_to_response: 'reviews,credits' })
       body = JSON.parse(res.body, symbolize_names: true)
-      if body[:success] == false
-        return nil
-      else
-        MovieDetail.new(body)
-      end
     end
 
     def top_rated(page)

@@ -8,7 +8,7 @@ class ViewPartiesController < ApplicationController
   def create
     movie_id = view_party_params[:movie_id]
     duration = view_party_params[:duration].to_i
-    movie = TMDBService.movie(movie_id)
+    movie = MoviesFacade.find(movie_id)
     duration = movie.runtime if movie.runtime > duration
     view_party = ViewParty.create!(
       user_id: current_user.id, movie_id: movie.id,
