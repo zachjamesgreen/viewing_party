@@ -16,6 +16,10 @@ class MoviesController < ApplicationController
 
   def show
     @movie = TMDBService.movie(params[:id])
+    if @movie.nil?
+      render file: 'public/404.html', status: :not_found
+      return
+    end
   end
 
   def top_rated
