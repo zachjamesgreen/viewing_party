@@ -11,7 +11,7 @@ RSpec.describe 'Movies', :vcr do
   end
 
   def discover_test
-    TMDBService.discover
+    MoviesFacade.discover
   end
 
   context 'discover page' do

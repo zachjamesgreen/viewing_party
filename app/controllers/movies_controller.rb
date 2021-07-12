@@ -1,14 +1,14 @@
 class MoviesController < ApplicationController
   before_action :require_login
   def discover
-    @movies = TMDBService.discover[0..3]
+    @movies = MoviesFacade.discover[0..3]
   end
 
   def movies
     @movies = if params[:search] && params[:search] != ''
                 TMDBService.search(params[:search])
               else
-                TMDBService.discover
+                MoviesFacade.discover
               end
   end
 

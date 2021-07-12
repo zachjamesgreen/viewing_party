@@ -4,7 +4,7 @@ RSpec.describe TMDBService do
   describe '.discover' do
     it 'returns a json response' do
       VCR.use_cassette('moviedb_discover', :record => :new_episodes) do
-        body = TMDBService.discover(1)
+        body = TMDBService.discover
         discover_array = body[:results]
 
         expect(body).is_a? Hash
