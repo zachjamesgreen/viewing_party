@@ -16,7 +16,7 @@ class MoviesController < ApplicationController
     @movie = MoviesFacade.find(params[:id])
     if @movie.nil?
       render file: 'public/404.html', status: :not_found
-      return
+      nil
     end
   end
 

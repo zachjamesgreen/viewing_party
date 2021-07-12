@@ -18,7 +18,7 @@ class MoviesFacade
     def find(id)
       json = TMDBService.find(id)
       if json[:success] == false
-        return nil
+        nil
       else
         MovieDetail.new(json)
       end
