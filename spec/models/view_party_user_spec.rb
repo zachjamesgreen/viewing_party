@@ -15,6 +15,5 @@ RSpec.describe ViewPartyUser do
       user = view_party.view_party_users.users.first
       expect(user).to eq u2
     end
-
   end
 end
