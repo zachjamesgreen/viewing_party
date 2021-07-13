@@ -41,6 +41,9 @@ ___
 
 *Database schema*
 
+![DB Schema](Viewing_Party_DB.jpg)
+
+
 Our friends table uses a self referential relationship to better organize our data. 
 
 
