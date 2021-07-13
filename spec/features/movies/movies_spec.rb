@@ -11,7 +11,7 @@ RSpec.describe 'Movies', :vcr do
   end
 
   def discover_test
-    TMDBService.discover
+    MoviesFacade.discover
   end
 
   context 'discover page' do
@@ -103,7 +103,7 @@ RSpec.describe 'Movies', :vcr do
 
   context 'movie details page' do
     it 'has link to create viewing party' do
-      movie = TMDBService.movie(508943)
+      movie = MoviesFacade.find(508943)
       visit '/movies/508943'
 
       expect(page).to have_content(movie.title)

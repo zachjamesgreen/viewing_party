@@ -1,28 +1,26 @@
 class MoviesController < ApplicationController
   before_action :require_login
   def discover
-    @movies = TMDBService.discover[0..3]
+    @movies = MoviesFacade.discover[0..3]
   end
 
   def movies
     @movies = if params[:search] && params[:search] != ''
-                TMDBService.search(params[:search])
+                MoviesFacade.search(params[:search])
               else
-                TMDBService.discover
+                MoviesFacade.discover
               end
   end
 
-  def search; end
-
   def show
-    @movie = TMDBService.movie(params[:id])
+    @movie = MoviesFacade.find(params[:id])
     if @movie.nil?
       render file: 'public/404.html', status: :not_found
-      return
+      nil
     end
   end
 
   def top_rated
-    @movies = TMDBService.top_rated(1) + TMDBService.top_rated(2)
+    @movies = MoviesFacade.top_rated(1) + MoviesFacade.top_rated(2)
   end
 end
