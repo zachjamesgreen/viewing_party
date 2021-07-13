@@ -16,10 +16,11 @@ gem 'coffee-rails', '~> 4.2'
 gem 'bootsnap'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
-
+gem 'sendgrid-ruby'
 gem 'webpacker'
 gem 'faraday'
 gem 'bcrypt'
+gem 'figaro'
 
 group :development, :test do
   gem 'pry'

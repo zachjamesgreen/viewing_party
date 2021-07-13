@@ -17,6 +17,7 @@ class ViewPartiesController < ApplicationController
     friends_array&.each do |friend|
       ViewPartyUser.create!(view_party_id: view_party.id, user_id: friend.id)
     end
+    ViewPartyInvitationMailer.with(view_party: view_party).invitation_email.deliver_now
     redirect_to dashboard_path
   end
 
