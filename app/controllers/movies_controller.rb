@@ -14,10 +14,7 @@ class MoviesController < ApplicationController
 
   def show
     @movie = MoviesFacade.find(params[:id])
-    if @movie.nil?
-      render file: 'public/404.html', status: :not_found
-      nil
-    end
+    render file: 'public/404.html', status: :not_found if @movie.nil?
   end
 
   def top_rated
