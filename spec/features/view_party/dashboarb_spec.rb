@@ -110,6 +110,13 @@ RSpec.describe 'View Party on Dashboard', :vcr do
     end
 
     it 'cant create a view party if duration < movie runtime' do
+      login
+      visit '/movies/508943'
+      click_on 'Create Viewing Party'
+      find("input[type=range]").fill_in with: 0
+      click_on 'commit'
+      vp = ViewParty.last
+      expect(vp.duration).to_not eq 0
     end
 
 
