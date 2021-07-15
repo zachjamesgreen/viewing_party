@@ -7,9 +7,6 @@ ___
 Viewing Party deployed on
 
 - [Heroku](https://viewingpartyzjg.herokuapp.com/)
-- AWS
-- Google Cloud
-- Linux Server
 
 After registering, this application allows a user to find a movie to watch with friends. The movie data is from [The Movie Database](https://www.themoviedb.org/). Once a user finds that movie they can create a viewing party which they can invite their friends to.
 
